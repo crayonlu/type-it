@@ -37,6 +37,9 @@ const eslintConfig = [
       '@typescript-eslint/explicit-function-return-type': 'off',
       '@typescript-eslint/no-explicit-any': 'warn', // 警告使用any
     },
+    ignorePatterns: [
+      'src/components/ui/**',
+    ],
   },
 ];
 
