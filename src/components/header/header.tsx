@@ -1,5 +1,6 @@
 import { headerConfig } from '@/config/header';
 import HeaderItem from './components/headerItem';
+import { ThemeToggle } from '@/components/theme/theme-toggle';
 
 export default function Header() {
   return (
@@ -28,7 +29,7 @@ export default function Header() {
 
           {/* Actions */}
           <div className="flex items-center space-x-2">
-            {/* 可以添加其他操作按钮，比如主题切换、用户菜单等 */}
+            <ThemeToggle />
           </div>
         </div>
       </div>
