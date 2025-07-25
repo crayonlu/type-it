@@ -4,7 +4,8 @@ interface HeaderConfig {
   icon: string;
 }
 
-export const headerConfig: HeaderConfig[] = [
+// 内部导航链接
+export const navConfig: HeaderConfig[] = [
   {
     title: '首页',
     link: '/',
@@ -25,4 +26,20 @@ export const headerConfig: HeaderConfig[] = [
     link: '/about',
     icon: 'User',
   },
-]
+];
+
+// 跳转外部
+export const actionsConfig: HeaderConfig[] = [
+  {
+    title: 'GitHub',
+    link: 'https://github.com/crayonlu',
+    icon: 'Computer',
+  },
+  {
+    title: '邮箱',
+    link: 'mailto:crayonlu@qq.com',
+    icon: 'Mail',
+  },
+];
+
+export const headerConfig = [...navConfig, ...actionsConfig];
