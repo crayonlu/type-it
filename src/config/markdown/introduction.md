@@ -1,12 +1,7 @@
-# 关于我
+### Hi there! I'm Crayon 👋
 
-## 个人简介
+**Cyber Security Student @HUST** • **Member of BingYan Studio**
 
-我是一名热爱技术的开发者，专注于前端开发和用户体验设计。
+### 哈喽哈喽！我是Crayon 👋
 
-## 技能特长
-
-- **前端开发**: React, Next.js, TypeScript
-- **UI/UX设计**: 响应式设计，用户体验优化
-- **后端技术**: Node.js, 数据库设计
-- **其他技能**: Git, Docker, 云服务部署
+**现在在华中科技大学读信息安全专业** • **冰岩作坊前端组成员**

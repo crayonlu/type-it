@@ -81,6 +81,64 @@ export const animations = {
       repeat: 3,
       ease: "power2.inOut"
     });
+  },
+
+  // 优雅的淡入动画
+  elegantFadeIn: (element: string | Element, duration = 0.8, delay = 0) => {
+    return gsap.fromTo(element,
+      { opacity: 0, y: 30, scale: 0.95 },
+      { opacity: 1, y: 0, scale: 1, duration, delay, ease: "power3.out" }
+    );
+  },
+
+  // 平滑滑入动画
+  smoothSlideIn: (element: string | Element, direction = 'left', duration = 0.7, delay = 0) => {
+    const startX = direction === 'left' ? -80 : direction === 'right' ? 80 : 0;
+    const startY = direction === 'up' ? -80 : direction === 'down' ? 80 : 0;
+    
+    return gsap.fromTo(element,
+      { opacity: 0, x: startX, y: startY, scale: 0.9 },
+      { opacity: 1, x: 0, y: 0, scale: 1, duration, delay, ease: "power3.out" }
+    );
+  },
+
+  // 悬停效果
+  hoverEffect: (element: string | Element) => {
+    const tl = gsap.timeline({ paused: true });
+    tl.to(element, { scale: 1.05, duration: 0.3, ease: "power2.out" });
+    return tl;
+  },
+
+  // 点击效果
+  clickEffect: (element: string | Element) => {
+    return gsap.to(element, {
+      scale: 0.95,
+      duration: 0.1,
+      yoyo: true,
+      repeat: 1,
+      ease: "power2.inOut"
+    });
+  },
+
+  // 呼吸效果
+  breathing: (element: string | Element, duration = 2) => {
+    return gsap.to(element, {
+      scale: 1.02,
+      duration: duration / 2,
+      yoyo: true,
+      repeat: -1,
+      ease: "power2.inOut"
+    });
+  },
+
+  // 渐变文字效果
+  gradientText: (element: string | Element, duration = 2) => {
+    return gsap.to(element, {
+      backgroundPosition: "200% center",
+      duration,
+      ease: "none",
+      repeat: -1
+    });
   }
 };
 
