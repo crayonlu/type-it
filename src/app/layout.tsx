@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import { ThemeProvider } from '@/components/theme/theme-provider';
 import Header from '@/components/header/header';
+import { NextIntlClientProvider } from 'next-intl';
+import { getLocale } from 'next-intl/server';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -19,27 +21,31 @@ export const metadata: Metadata = {
   description: 'A modern web application',
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const lang = await getLocale();
+
   return (
-    <html lang='en' suppressHydrationWarning>
+    <html lang={ lang } suppressHydrationWarning>
       <body
         className={
           `${geistSans.variable} ${geistMono.variable} font-sans min-h-screen bg-background text-foreground antialiased transition-colors`}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          enableSystem={true}
-          disableTransitionOnChange={false}
-          themes={["light", "dark", "system"]}
-        >
-          <Header />
-          {children}
-        </ThemeProvider>
+        <NextIntlClientProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="light"
+            enableSystem={true}
+            disableTransitionOnChange={false}
+            themes={["light", "dark", "system"]}
+          >
+            <Header />
+            {children}
+          </ThemeProvider>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

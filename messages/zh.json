@@ -1,0 +1,10 @@
+{
+  "HomePage": {
+    "Header": {
+      "Home": "首页",
+      "Projects": "项目",
+      "Blog": "博客",
+      "About": "关于"
+    }
+  }
+}

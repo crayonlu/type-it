@@ -7,22 +7,22 @@ interface HeaderConfig {
 // 内部导航链接
 export const navConfig: HeaderConfig[] = [
   {
-    title: '首页',
+    title: 'Home',
     link: '/',
     icon: 'Home',
   },
   {
-    title: '项目',
+    title: 'Projects',
     link: '/projects',
     icon: 'FolderOpen',
   },
   {
-    title: '博客',
+    title: 'Blog',
     link: '/blog',
     icon: 'FileText',
   },
   {
-    title: '关于',
+    title: 'About',
     link: '/about',
     icon: 'User',
   },

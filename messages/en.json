@@ -1,0 +1,10 @@
+{
+  "HomePage": {
+    "Header": {
+      "Home": "Home",
+      "Projects": "Projects",
+      "Blog": "Blog",
+      "About": "About"
+    }
+  }
+}
