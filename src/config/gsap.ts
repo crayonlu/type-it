@@ -189,10 +189,12 @@ export const utils = {
 
 export { gsap, ScrollTrigger, TextPlugin, MotionPathPlugin };
 
-export default {
+const gsapConfig = {
   gsap,
   animations,
   scrollAnimations,
   timelines,
   utils
 };
+
+export default gsapConfig;
