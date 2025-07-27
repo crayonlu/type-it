@@ -26,7 +26,7 @@ interface BlogCategory {
   children: (BlogPost | BlogCategory)[]; 
 }
 
-const BASE = '@/config/markdown/Blog'
+const BASE = '@/config/docs/Blog'
 
 const blog_configs: BlogCategory[] = [
   {

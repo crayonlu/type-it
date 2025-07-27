@@ -25,7 +25,7 @@ export default function Info() {
         setIntroduction(intro);
       } catch (error) {
         console.error('Failed to load introduction:', error);
-        const { default: fallbackIntro } = await import('@/config/markdown/Home/introduction.en.md');
+        const { default: fallbackIntro } = await import('@/config/docs/Home/introduction.en.md');
         setIntroduction(fallbackIntro);
       }
     };
