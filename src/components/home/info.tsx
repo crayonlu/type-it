@@ -1,19 +1,37 @@
 'use client'
 
 // home页个人信息的展示
-import { avatar, introduction, nickname } from "@/config";
+import { avatar, nickname, getIntroduction } from "@/config";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from 'rehype-raw';
 import remarkGfm from "remark-gfm";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { animations } from "@/config/gsap";
 import { useTranslations } from "next-intl";
+import { useLocale } from "next-intl";
 
 export default function Info() {
   const avatarRef = useRef<HTMLImageElement>(null);
   const nameRef = useRef<HTMLHeadingElement>(null);
   const introRef = useRef<HTMLDivElement>(null);
   const t = useTranslations("Common");
+  const locale = useLocale();
+  const [introduction, setIntroduction] = useState<string>("");
+
+  useEffect(() => {
+    const loadIntroduction = async () => {
+      try {
+        const intro = await getIntroduction(locale);
+        setIntroduction(intro);
+      } catch (error) {
+        console.error('Failed to load introduction:', error);
+        const { default: fallbackIntro } = await import('@/config/markdown/introduction.en.md');
+        setIntroduction(fallbackIntro);
+      }
+    };
+
+    loadIntroduction();
+  }, [locale]);
 
   useEffect(() => {
     // 头像缩放
