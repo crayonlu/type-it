@@ -75,7 +75,7 @@ export default function Info() {
         >{ nickname }</h1>
         <div 
           ref={introRef}
-          className="prose max-w-none opacity-0"
+          className="prose max-w-none opacity-0 tracking-widest"
         >
           <ReactMarkdown rehypePlugins={[rehypeRaw,remarkGfm]}>
             { introduction }
