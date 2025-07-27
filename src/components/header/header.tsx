@@ -6,6 +6,7 @@ import { actionsConfig, navConfig } from "@/config/header";
 import { animations, timelines } from "@config/gsap";
 import HeaderItem from "./components/headerItem";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
+import { LangToggle } from "@/components/lang/lang-toggle";
 import { useTranslations } from "next-intl";
 
 export default function Header() {
@@ -15,6 +16,7 @@ export default function Header() {
   const navRef = useRef<HTMLElement>(null);
   const actionsRef = useRef<HTMLDivElement>(null);
   const t = useTranslations("HomePage.Header");
+  const commonT = useTranslations("Common");
 
   useEffect(() => {
     if (headerRef.current) {
@@ -81,13 +83,14 @@ export default function Header() {
             {actionsConfig.map((item, index) => (
               <HeaderItem
                 key={`action-${index}`}
-                title={item.title}
+                title={item.title === 'Email' ? commonT('Email') : item.title}
                 link={item.link}
                 icon={item.icon}
                 isActive={false}
                 index={index}
               />
             ))}
+            <LangToggle />
             <ThemeToggle />
           </div>
         </div>

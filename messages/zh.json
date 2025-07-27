@@ -6,5 +6,20 @@
       "Blog": "博客",
       "About": "关于"
     }
+  },
+  "Common": {
+    "Loading": "加载中...",
+    "Avatar": "头像",
+    "Email": "邮箱"
+  },
+  "Language": {
+    "ToggleLanguage": "切换语言",
+    "FailedToChangeLanguage": "切换语言失败："
+  },
+  "Theme": {
+    "ToggleTheme": "切换主题",
+    "Light": "浅色",
+    "Dark": "深色",
+    "System": "系统"
   }
 }

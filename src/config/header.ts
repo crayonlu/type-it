@@ -36,7 +36,7 @@ export const actionsConfig: HeaderConfig[] = [
     icon: 'Computer',
   },
   {
-    title: '邮箱',
+    title: 'Email',
     link: 'mailto:crayonlu@qq.com',
     icon: 'Mail',
   },

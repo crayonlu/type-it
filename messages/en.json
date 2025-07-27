@@ -6,5 +6,20 @@
       "Blog": "Blog",
       "About": "About"
     }
+  },
+  "Common": {
+    "Loading": "Loading...",
+    "Avatar": "Avatar",
+    "Email": "Email"
+  },
+  "Language": {
+    "ToggleLanguage": "Toggle Language",
+    "FailedToChangeLanguage": "Failed to change language:"
+  },
+  "Theme": {
+    "ToggleTheme": "Toggle Theme",
+    "Light": "Light",
+    "Dark": "Dark",
+    "System": "System"
   }
 }

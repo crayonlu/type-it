@@ -7,11 +7,13 @@ import rehypeRaw from 'rehype-raw';
 import remarkGfm from "remark-gfm";
 import { useEffect, useRef } from "react";
 import { animations } from "@/config/gsap";
+import { useTranslations } from "next-intl";
 
 export default function Info() {
   const avatarRef = useRef<HTMLImageElement>(null);
   const nameRef = useRef<HTMLHeadingElement>(null);
   const introRef = useRef<HTMLDivElement>(null);
+  const t = useTranslations("Common");
 
   useEffect(() => {
     // 头像缩放
@@ -46,7 +48,7 @@ export default function Info() {
         <img 
           ref={avatarRef}
           className="rounded-[50%] w-120 opacity-0"
-          src={ avatar } alt="头像" />
+          src={ avatar } alt={t("Avatar")} />
       </section>
       <section className="flex-1 flex-col flex justify-center items-center gap-8">
         <h1 
