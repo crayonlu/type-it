@@ -24,8 +24,21 @@ interface BlogCategory {
   children: (BlogPost | BlogCategory)[]; 
 }
 
+interface BlogPostProps{
+  // 标题
+  title: string;
+  // 描述/简介
+  desc: string;
+  // 封面:可以用uri/url
+  cover?: string;
+  // 时间
+  time: string;
+  // 标签
+  tags: string[];
+}
+
 const BLOG_DOCS_BASE = '@/config/docs/Blog'
 const BLOG_IMG_BASE = '/images/Blog'
 
-export type { BlogPost, BlogCategory };
+export type { BlogPost, BlogCategory, BlogPostProps};
 export { BLOG_DOCS_BASE, BLOG_IMG_BASE}
