@@ -62,3 +62,42 @@
 :root {
   scrollbar-width: none;
 }
+
+/* 修复 prose 在浅色模式下的文字颜色 */
+.prose {
+  --tw-prose-body: hsl(222.2 84% 4.9%);
+  --tw-prose-headings: hsl(222.2 84% 4.9%);
+  --tw-prose-lead: hsl(222.2 84% 4.9%);
+  --tw-prose-links: hsl(222.2 84% 4.9%);
+  --tw-prose-bold: hsl(222.2 84% 4.9%);
+  --tw-prose-counters: hsl(222.2 84% 4.9%);
+  --tw-prose-bullets: hsl(222.2 84% 4.9%);
+  --tw-prose-hr: hsl(214.3 31.8% 91.4%);
+  --tw-prose-quotes: hsl(222.2 84% 4.9%);
+  --tw-prose-quote-borders: hsl(214.3 31.8% 91.4%);
+  --tw-prose-captions: hsl(222.2 84% 4.9%);
+  --tw-prose-code: hsl(222.2 84% 4.9%);
+  --tw-prose-pre-code: hsl(210 40% 98%);
+  --tw-prose-pre-bg: hsl(222.2 84% 4.9%);
+  --tw-prose-th-borders: hsl(214.3 31.8% 91.4%);
+  --tw-prose-td-borders: hsl(214.3 31.8% 91.4%);
+}
+
+.dark .prose {
+  --tw-prose-body: hsl(210 40% 98%);
+  --tw-prose-headings: hsl(210 40% 98%);
+  --tw-prose-lead: hsl(210 40% 98%);
+  --tw-prose-links: hsl(210 40% 98%);
+  --tw-prose-bold: hsl(210 40% 98%);
+  --tw-prose-counters: hsl(210 40% 98%);
+  --tw-prose-bullets: hsl(210 40% 98%);
+  --tw-prose-hr: hsl(217.2 32.6% 17.5%);
+  --tw-prose-quotes: hsl(210 40% 98%);
+  --tw-prose-quote-borders: hsl(217.2 32.6% 17.5%);
+  --tw-prose-captions: hsl(210 40% 98%);
+  --tw-prose-code: hsl(210 40% 98%);
+  --tw-prose-pre-code: hsl(222.2 84% 4.9%);
+  --tw-prose-pre-bg: hsl(210 40% 98%);
+  --tw-prose-th-borders: hsl(217.2 32.6% 17.5%);
+  --tw-prose-td-borders: hsl(217.2 32.6% 17.5%);
+}
