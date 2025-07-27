@@ -63,7 +63,7 @@
   scrollbar-width: none;
 }
 
-/* 修复 prose 在浅色模式下的文字颜色 */
+/* prose */
 .prose {
   --tw-prose-body: hsl(222.2 84% 4.9%);
   --tw-prose-headings: hsl(222.2 84% 4.9%);

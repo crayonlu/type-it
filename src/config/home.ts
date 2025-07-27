@@ -8,17 +8,17 @@ export const nickname = 'crayon';
 export async function getIntroduction(locale: string) {
   try {
     if (locale === 'zh') {
-      const { default: introduction } = await import('./markdown/introduction.zh.md');
+      const { default: introduction } = await import('./markdown/Home/introduction.zh.md');
       return introduction;
     } else {
-      const { default: introduction } = await import('./markdown/introduction.en.md');
+      const { default: introduction } = await import('./markdown/Home/introduction.en.md');
       return introduction;
     }
   } catch (error) {
-    const { default: introduction } = await import('./markdown/introduction.en.md');
+    const { default: introduction } = await import('./markdown/Home/introduction.en.md');
     return introduction;
   }
 }
 
-import introduction from './markdown/introduction.en.md';
+import introduction from './markdown/Home/introduction.en.md';
 export { introduction };
