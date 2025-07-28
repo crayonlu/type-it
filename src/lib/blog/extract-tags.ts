@@ -11,7 +11,8 @@ function extractTags(configs: (BlogCategory | BlogPost)[]): string[] {
       result.push(...extractTags(item.children));
     }
   });
-  return result;
+  // 去重
+  return [...new Set(result)];
 }
 
 export default extractTags;

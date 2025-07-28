@@ -5,15 +5,15 @@ import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
-import { Search, ChevronDown, ChevronRight, X } from "lucide-react"
+import { Search, ChevronRight } from "lucide-react"
 import { cn } from "@/lib/utils"
 
-interface CategoryItem {
+export interface CategoryItem {
   name: string
   children: CategoryItem[]
 }
 
-interface CategorySidebarProps {
+interface CategorySelectorProps {
   categories: CategoryItem[]
   selectedCategories: string[]
   onCategoriesChange: (categories: string[]) => void
@@ -27,6 +27,17 @@ interface CategoryNodeProps {
   searchTerm: string
   expandedNodes: Set<string>
   onToggleExpand: (categoryName: string) => void
+}
+
+const getAllCategoryNames = (cats: CategoryItem[]): string[] => {
+  let names: string[] = []
+  cats.forEach(cat => {
+    names.push(cat.name)
+    if (cat.children.length > 0) {
+      names = names.concat(getAllCategoryNames(cat.children))
+    }
+  })
+  return names
 }
 
 function CategoryNode({ 
@@ -109,9 +120,9 @@ function CategoryNode({
       >
         {hasChildren && (
           <div className="pt-1 space-y-1">
-            {category.children.map((child) => (
+            {category.children.map((child, index) => (
               <CategoryNode
-                key={child.name}
+                key={`${child.name}-${level + 1}-${index}`}
                 category={child}
                 level={level + 1}
                 selectedCategories={selectedCategories}
@@ -128,22 +139,11 @@ function CategoryNode({
   )
 }
 
-const getAllCategoryNames = (cats: CategoryItem[]): string[] => {
-  let names: string[] = []
-  cats.forEach(cat => {
-    names.push(cat.name)
-    if (cat.children.length > 0) {
-      names = names.concat(getAllCategoryNames(cat.children))
-    }
-  })
-  return names
-}
-
-export default function CategorySidebar({ 
+export default function CategorySelector({ 
   categories, 
   selectedCategories, 
   onCategoriesChange 
-}: CategorySidebarProps) {
+}: CategorySelectorProps) {
   const [searchTerm, setSearchTerm] = useState("")
   const [expandedNodes, setExpandedNodes] = useState<Set<string>>(new Set())
   const isInitialized = useRef(false)
@@ -176,6 +176,8 @@ export default function CategorySidebar({
       
       expandMatchingNodes(categories)
       setExpandedNodes(newExpanded)
+    } else {
+      setExpandedNodes(new Set())
     }
   }, [searchTerm, categories])
 
@@ -191,16 +193,16 @@ export default function CategorySidebar({
     const categoryObj = findCategory(categories)
     if (!categoryObj) return
 
-    const getAllCategoryNames = (cat: CategoryItem): string[] => {
+    const getChildCategoryNames = (cat: CategoryItem): string[] => {
       let names = [cat.name]
       if (cat.children.length > 0) {
         cat.children.forEach(child => {
-          names = names.concat(getAllCategoryNames(child))
+          names = names.concat(getChildCategoryNames(child))
         })
       }
       return names
     }
-    const allNames = getAllCategoryNames(categoryObj)
+    const allNames = getChildCategoryNames(categoryObj)
 
     if (selectedCategories.includes(categoryName)) {
       onCategoriesChange(selectedCategories.filter(name => !allNames.includes(name)))
@@ -236,7 +238,7 @@ export default function CategorySidebar({
   }
 
   return (
-    <div className="w-80 bg-card border-r border-border h-full flex flex-col">
+    <>
       <div className="p-4 border-b border-border">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-lg font-semibold">分类筛选</h2>
@@ -275,9 +277,9 @@ export default function CategorySidebar({
 
       <div className="flex-1 overflow-y-auto p-4">
         <div className="space-y-2">
-          {categories.map((category) => (
+          {categories.map((category, index) => (
             <CategoryNode
-              key={category.name}
+              key={`${category.name}-0-${index}`}
               category={category}
               level={0}
               selectedCategories={selectedCategories}
@@ -289,6 +291,6 @@ export default function CategorySidebar({
           ))}
         </div>
       </div>
-    </div>
+    </>
   )
 }

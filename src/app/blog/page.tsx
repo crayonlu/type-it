@@ -5,12 +5,13 @@ import { useState } from "react"
 import blog_configs from "@/config/docs/Blog/config"
 import extractCategories from "@/lib/blog/extract-categories"
 import extractTags from "@/lib/blog/extract-tags"
-import CategorySidebar from "@/components/blog/CategorySidebar"
+import CategorySidebar from "@/components/blog/category-sidebar"
 
 export default function BlogsView(){
   const categories = extractCategories(blog_configs);
   const tags = extractTags(blog_configs);
   const [selectedCategories, setSelectedCategories] = useState<string[]>([])
+  const [selectedTags, setSelectedTags] = useState<string[]>([])
 
   return (
     <div className="flex h-screen">
@@ -18,6 +19,9 @@ export default function BlogsView(){
         categories={categories}
         selectedCategories={selectedCategories}
         onCategoriesChange={setSelectedCategories}
+        tags={tags}
+        selectedTags={selectedTags}
+        onTagsChange={setSelectedTags}
       />
       
       <div className="flex-1 overflow-y-auto">
