@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
@@ -18,6 +18,14 @@ export default function TagSelector({
   onTagsChange
 }: TagSelectorProps) {
   const [searchTerm, setSearchTerm] = useState("")
+  const isInitialized = useRef(false)
+
+  useEffect(() => {
+    if (!isInitialized.current && tags.length > 0 && selectedTags.length === 0) {
+      onTagsChange(tags)
+      isInitialized.current = true
+    }
+  }, [tags, selectedTags, onTagsChange])
 
   const filteredTags = tags.filter(tag =>
     tag.toLowerCase().includes(searchTerm.toLowerCase())
