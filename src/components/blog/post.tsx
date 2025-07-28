@@ -8,7 +8,7 @@ export default function Post(props: BlogPost){
 
   return (
     <Glow>
-      <div className="glow:text-accent-foreground/50 glow:bg-accent break-inside-avoid mb-6 flex flex-col bg-card text-card-foreground rounded-[var(--radius)] shadow-sm overflow-hidden transition-all duration-300 hover:shadow-md">
+      <div className="glow:text-accent-foreground/50 glow:bg-accent break-inside-avoid mb-6 flex flex-col bg-card text-card-foreground rounded-[var(--radius)] shadow-sm overflow-hidden transition-all duration-300 hover:shadow-md border-1">
         {ExistCover && (
           <div className="w-full h-48 overflow-hidden flex-shrink-0">
             <img 

@@ -28,7 +28,7 @@ export default function BlogsView(){
         onTagsChange={setSelectedTags}
       />
       
-      <div className="flex-1 overflow-y-auto p-6">
+      <div className="flex-1 overflow-y-auto p-6 pb-24">
         <GlowCapture>
           <div className="columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-6">
             {blogPosts.map((post, index) => (
