@@ -1,8 +1,8 @@
 // post
-import type { BlogPostProps } from "@/types/blog"
+import type { BlogPost } from "@/types/blog"
 import Tag from "./components/tag";
 
-export default function Post(props: BlogPostProps){
+export default function Post(props: BlogPost){
   const ExistCover = props.cover;
 
   return (
