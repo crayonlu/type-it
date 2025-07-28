@@ -7,6 +7,7 @@ import extractCategories from "@/lib/blog/extract-categories"
 import extractTags from "@/lib/blog/extract-tags"
 import CategorySidebar from "@/components/blog/category-sidebar"
 import filterBlogs from "@/lib/blog/filter-blogs"
+import Post from "@/components/blog/post"
 
 export default function BlogsView(){
   const categories = extractCategories(blog_configs);
@@ -14,7 +15,6 @@ export default function BlogsView(){
   const [selectedCategories, setSelectedCategories] = useState<string[]>([])
   const [selectedTags, setSelectedTags] = useState<string[]>([])
   const blogPosts = filterBlogs({tags:selectedTags,categories:selectedCategories})
-  console.log(blogPosts);
   
   return (
     <div className="flex h-screen">
@@ -27,8 +27,12 @@ export default function BlogsView(){
         onTagsChange={setSelectedTags}
       />
       
-      <div className="flex-1 overflow-y-auto">
-
+      <div className="flex-1 overflow-y-auto p-6">
+        <div className="columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-6">
+          {blogPosts.map((post, index) => (
+            <Post key={index} {...post} />
+          ))}
+        </div>
       </div>
     </div>
   )

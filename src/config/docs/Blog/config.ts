@@ -20,7 +20,41 @@ const blog_configs: BlogCategory[] = [
       {
         type: 'category',
         name: 'JS',
-        children: []
+        children: [
+          {
+            type: 'post',
+            title: 'JS中的网络请求',
+            desc: '用三种方法调用cozeAPI，轮子高手',
+            time: '2025-3-30',
+            docs: `${BLOG_DOCS_BASE}/前端/JS/JS1.md`,
+            tags: ['JS','AJAX','NET']
+          },
+          {
+            type: 'post',
+            title: 'JS中的异步(async)',
+            desc: 'JavaScript作为单线程语言，若没有异步机制，执行长时间任务时会导致整个应用响应变慢或无响应',
+            time: '2025-3-30',
+            docs: `${BLOG_DOCS_BASE}/前端/JS/JS2.md`,
+            tags: ['JS','异步','async']
+          },
+          {
+            type: 'post',
+            title: 'JS中的异步',
+            desc: '闭包是JavaScript中一个强大的特性，也挺EX',
+            time: '2025-3-30',
+            docs: `${BLOG_DOCS_BASE}/前端/JS/JS3.md`,
+            tags: ['JS','闭包'],
+            cover: `${BLOG_IMG_BASE}/前端/JS/JS3/close1.png`
+          },
+          {
+            type: 'post',
+            title: '语法基础这一块',
+            desc: '学学JS基础，嘻嘻',
+            time: '2025-3-30',
+            docs: `${BLOG_DOCS_BASE}/前端/JS/JS4.md`,
+            tags: ['JS','语法']
+          },
+        ]
       },
       {
         type: 'category',
@@ -70,7 +104,7 @@ const blog_configs: BlogCategory[] = [
               '哥们',
               '唐'
             ],
-            cover: `${BLOG_IMG_BASE}/生活/趣事/长江3.jpg`
+            cover: `${BLOG_IMG_BASE}/生活/趣事/2025.4.5/长江3.jpg`
           }
         ]
       },
