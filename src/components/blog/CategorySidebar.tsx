@@ -1,0 +1,294 @@
+"use client"
+
+import { useState, useEffect, useRef } from "react"
+import { Button } from "@/components/ui/button"
+import { Checkbox } from "@/components/ui/checkbox"
+import { Input } from "@/components/ui/input"
+import { Badge } from "@/components/ui/badge"
+import { Search, ChevronDown, ChevronRight, X } from "lucide-react"
+import { cn } from "@/lib/utils"
+
+interface CategoryItem {
+  name: string
+  children: CategoryItem[]
+}
+
+interface CategorySidebarProps {
+  categories: CategoryItem[]
+  selectedCategories: string[]
+  onCategoriesChange: (categories: string[]) => void
+}
+
+interface CategoryNodeProps {
+  category: CategoryItem
+  level: number
+  selectedCategories: string[]
+  onToggle: (categoryName: string) => void
+  searchTerm: string
+  expandedNodes: Set<string>
+  onToggleExpand: (categoryName: string) => void
+}
+
+function CategoryNode({ 
+  category, 
+  level, 
+  selectedCategories, 
+  onToggle, 
+  searchTerm,
+  expandedNodes,
+  onToggleExpand
+}: CategoryNodeProps) {
+  const hasChildren = category.children.length > 0
+  const isExpanded = expandedNodes.has(category.name)
+  const isSelected = selectedCategories.includes(category.name)
+  
+  const matchesSearch = searchTerm === '' || 
+    category.name.toLowerCase().includes(searchTerm.toLowerCase())
+  
+  const hasMatchingChildren = category.children.some(child => 
+    child.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    child.children.some(grandChild => 
+      grandChild.name.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+  )
+  
+  const shouldShow = matchesSearch || hasMatchingChildren
+  
+  if (!shouldShow) return null
+
+  return (
+    <div className="space-y-1">
+      <div 
+        className={cn(
+          "flex items-center space-x-2 py-2 px-2 rounded-md hover:bg-muted/50 transition-colors group",
+          level > 0 && "ml-4"
+        )}
+      >
+        <div className="flex h-4 w-4 items-center justify-center">
+          {hasChildren && (
+            <Button
+              variant="ghost"
+              size="sm"
+              className="h-full w-full p-0 opacity-60 group-hover:opacity-100"
+              onClick={() => onToggleExpand(category.name)}
+            >
+              <ChevronRight className={cn("h-3 w-3 transition-transform duration-200", isExpanded && "rotate-90")} />
+            </Button>
+          )}
+        </div>
+        
+        <Checkbox
+          id={`category-${category.name}-${level}`}
+          checked={isSelected}
+          onCheckedChange={() => onToggle(category.name)}
+          className="data-[state=checked]:bg-primary data-[state=checked]:border-primary"
+        />
+        
+        <label
+          htmlFor={`category-${category.name}-${level}`}
+          className={cn(
+            "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer flex-1",
+            matchesSearch && searchTerm && "bg-yellow-100 dark:bg-yellow-900/30 px-1 rounded "
+          )}
+        >
+          {category.name}
+        </label>
+        
+        {hasChildren && (
+          <Badge variant="secondary" className="text-xs opacity-60 group-hover:opacity-100">
+            {category.children.length}
+          </Badge>
+        )}
+      </div>
+      
+      <div
+        className={cn(
+          "overflow-hidden transition-all duration-300 ease-in-out",
+          isExpanded ? "max-h-[1000px]" : "max-h-0"
+        )}
+      >
+        {hasChildren && (
+          <div className="pt-1 space-y-1">
+            {category.children.map((child) => (
+              <CategoryNode
+                key={child.name}
+                category={child}
+                level={level + 1}
+                selectedCategories={selectedCategories}
+                onToggle={onToggle}
+                searchTerm={searchTerm}
+                expandedNodes={expandedNodes}
+                onToggleExpand={onToggleExpand}
+              />
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  )
+}
+
+const getAllCategoryNames = (cats: CategoryItem[]): string[] => {
+  let names: string[] = []
+  cats.forEach(cat => {
+    names.push(cat.name)
+    if (cat.children.length > 0) {
+      names = names.concat(getAllCategoryNames(cat.children))
+    }
+  })
+  return names
+}
+
+export default function CategorySidebar({ 
+  categories, 
+  selectedCategories, 
+  onCategoriesChange 
+}: CategorySidebarProps) {
+  const [searchTerm, setSearchTerm] = useState("")
+  const [expandedNodes, setExpandedNodes] = useState<Set<string>>(new Set())
+  const isInitialized = useRef(false)
+
+  const allCategoryNames = getAllCategoryNames(categories)
+  const areAllSelected = selectedCategories.length > 0 && selectedCategories.length === allCategoryNames.length
+
+  useEffect(() => {
+    if (!isInitialized.current && categories.length > 0 && selectedCategories.length === 0) {
+      onCategoriesChange(allCategoryNames)
+      isInitialized.current = true
+    }
+  }, [categories, selectedCategories, onCategoriesChange, allCategoryNames])
+
+  useEffect(() => {
+    if (searchTerm) {
+      const newExpanded = new Set<string>()
+      
+      const expandMatchingNodes = (cats: CategoryItem[]) => {
+        cats.forEach(cat => {
+          const hasMatchingChild = cat.children.some(child => 
+            child.name.toLowerCase().includes(searchTerm.toLowerCase())
+          )
+          if (hasMatchingChild) {
+            newExpanded.add(cat.name)
+          }
+          expandMatchingNodes(cat.children)
+        })
+      }
+      
+      expandMatchingNodes(categories)
+      setExpandedNodes(newExpanded)
+    }
+  }, [searchTerm, categories])
+
+  const handleToggleCategory = (categoryName: string) => {
+    const findCategory = (cats: CategoryItem[]): CategoryItem | undefined => {
+      for (const cat of cats) {
+        if (cat.name === categoryName) return cat
+        const found = findCategory(cat.children)
+        if (found) return found
+      }
+      return undefined
+    }
+    const categoryObj = findCategory(categories)
+    if (!categoryObj) return
+
+    const getAllCategoryNames = (cat: CategoryItem): string[] => {
+      let names = [cat.name]
+      if (cat.children.length > 0) {
+        cat.children.forEach(child => {
+          names = names.concat(getAllCategoryNames(child))
+        })
+      }
+      return names
+    }
+    const allNames = getAllCategoryNames(categoryObj)
+
+    if (selectedCategories.includes(categoryName)) {
+      onCategoriesChange(selectedCategories.filter(name => !allNames.includes(name)))
+    } else {
+      onCategoriesChange(Array.from(new Set([...selectedCategories, ...allNames])))
+    }
+  }
+
+  const handleToggleExpand = (categoryName: string) => {
+    setExpandedNodes(prev => {
+      const newSet = new Set(prev)
+      if (newSet.has(categoryName)) {
+        newSet.delete(categoryName)
+      } else {
+        newSet.add(categoryName)
+      }
+      return newSet
+    })
+  }
+
+  const handleToggleSelectAll = () => {
+    if (areAllSelected) {
+      onCategoriesChange([])
+    } else {
+      onCategoriesChange(allCategoryNames)
+    }
+  }
+
+  const handleClear = () => {
+    onCategoriesChange([])
+    setSearchTerm("")
+    setExpandedNodes(new Set())
+  }
+
+  return (
+    <div className="w-80 bg-card border-r border-border h-full flex flex-col">
+      <div className="p-4 border-b border-border">
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="text-lg font-semibold">分类筛选</h2>
+          <div className="flex items-center space-x-2">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handleToggleSelectAll}
+              className="text-xs"
+            >
+              {areAllSelected ? '取消全选' : '全选'}
+            </Button>
+            {selectedCategories.length > 0 && (
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={handleClear}
+                className="text-xs text-muted-foreground hover:text-foreground"
+              >
+                清空 ({selectedCategories.length})
+              </Button>
+            )}
+          </div>
+        </div>
+        
+        <div className="relative">
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+          <Input
+            placeholder="搜索分类..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="pl-10"
+          />
+        </div>
+      </div>
+
+      <div className="flex-1 overflow-y-auto p-4">
+        <div className="space-y-2">
+          {categories.map((category) => (
+            <CategoryNode
+              key={category.name}
+              category={category}
+              level={0}
+              selectedCategories={selectedCategories}
+              onToggle={handleToggleCategory}
+              searchTerm={searchTerm}
+              expandedNodes={expandedNodes}
+              onToggleExpand={handleToggleExpand}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
