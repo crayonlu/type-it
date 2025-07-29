@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
+import { useTranslations } from "next-intl"
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Input } from "@/components/ui/input"
@@ -144,6 +145,7 @@ export default function CategorySelector({
   selectedCategories, 
   onCategoriesChange 
 }: CategorySelectorProps) {
+  const t = useTranslations("Blog.Sidebar")
   const [searchTerm, setSearchTerm] = useState("")
   const [expandedNodes, setExpandedNodes] = useState<Set<string>>(new Set())
   const isInitialized = useRef(false)
@@ -241,7 +243,7 @@ export default function CategorySelector({
     <>
       <div className="p-4 border-b border-border">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-lg font-semibold">分类筛选</h2>
+          <h2 className="text-lg font-semibold">{t("CategoryFilter")}</h2>
           <div className="flex items-center space-x-2">
             <Button
               variant="outline"
@@ -249,7 +251,7 @@ export default function CategorySelector({
               onClick={handleToggleSelectAll}
               className="text-xs"
             >
-              {areAllSelected ? '取消全选' : '全选'}
+              {areAllSelected ? t("DeselectAll") : t("SelectAll")}
             </Button>
             {selectedCategories.length > 0 && (
               <Button
@@ -258,7 +260,7 @@ export default function CategorySelector({
                 onClick={handleClear}
                 className="text-xs text-muted-foreground hover:text-foreground"
               >
-                清空 ({selectedCategories.length})
+                {t("Clear")} ({selectedCategories.length})
               </Button>
             )}
           </div>
@@ -267,7 +269,7 @@ export default function CategorySelector({
         <div className="relative">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input
-            placeholder="搜索分类..."
+            placeholder={t("SearchCategories")}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="pl-10"

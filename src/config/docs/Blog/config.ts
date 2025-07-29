@@ -99,7 +99,7 @@ const blog_configs: BlogCategory[] = [
             title: '2025.4.5',
             desc: '张进步来了?逆天',
             time: '2025-4-5',
-            docs: `${BLOG_DOCS_BASE}/生活/趣事/2024.4.5.md`,
+            docs: `${BLOG_DOCS_BASE}/生活/趣事/2025.4.5.md`,
             tags: [
               '哥们',
               '唐'

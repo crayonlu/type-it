@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { useTranslations } from "next-intl"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
@@ -26,6 +27,7 @@ export default function CategorySidebar({
   onTagsChange,
   className
 }: CategorySidebarProps) {
+  const t = useTranslations("Blog.Sidebar")
   const [collapsed, setCollapsed] = useState(false)
 
   return (
@@ -66,7 +68,7 @@ export default function CategorySidebar({
         </div>
       ) : (
         <div className="flex flex-col items-center pt-12 text-muted-foreground">
-          <div className="rotate-90 whitespace-nowrap text-xs font-medium">筛选器</div>
+          <div className="rotate-90 whitespace-nowrap text-xs font-medium">{t("Filter")}</div>
         </div>
       )}
     </div>

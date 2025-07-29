@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useState, useEffect, useRef } from 'react'
+import { useTranslations } from "next-intl"
 import { cn } from '@/lib/utils'
 import { Hash } from 'lucide-react'
 
@@ -16,6 +17,7 @@ interface TableOfContentsProps {
 }
 
 export function TableOfContents({ content, className }: TableOfContentsProps) {
+  const t = useTranslations("Blog.Navigation")
   const [headings, setHeadings] = useState<TocItem[]>([])
   const [activeId, setActiveId] = useState<string>('')
   const observerRef = useRef<IntersectionObserver | null>(null)
@@ -131,7 +133,7 @@ export function TableOfContents({ content, className }: TableOfContentsProps) {
         <div className="flex items-center gap-2 mb-4 px-2">
           <Hash className="w-4 h-4 text-primary" />
           <h4 className="text-sm font-semibold text-foreground">
-            文章导航
+            {t("ArticleNavigation")}
           </h4>
         </div>
         <ul className="space-y-1">

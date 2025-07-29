@@ -21,5 +21,28 @@
     "Light": "Light",
     "Dark": "Dark",
     "System": "System"
+  },
+  "Blog": {
+    "Sidebar": {
+      "Filter": "Filter",
+      "CategoryFilter": "Category Filter",
+      "TagFilter": "Tag Filter",
+      "SelectAll": "Select All",
+      "DeselectAll": "Deselect All",
+      "Clear": "Clear",
+      "SearchCategories": "Search categories...",
+      "SearchTags": "Search tags..."
+    },
+    "Post": {
+      "Cover": "Cover"
+    },
+    "Navigation": {
+      "ArticleNavigation": "Article Navigation",
+      "Previous": "Previous",
+      "Next": "Next",
+      "AllArticles": "All Articles",
+      "BackToHome": "Back to Home",
+      "CurrentArticle": "Current Article"
+    }
   }
 }

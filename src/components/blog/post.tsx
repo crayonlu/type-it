@@ -1,11 +1,13 @@
 // post
 import type { BlogPost } from "@/types/blog"
+import { useTranslations } from "next-intl"
 import Tag from "./components/tag";
 import { Glow } from "@codaworks/react-glow"
 import Link from "next/link"
 import { getSlugFromDocs } from "@/lib/blog/path-utils"
 
 export default function Post(props: BlogPost){
+  const t = useTranslations("Blog.Post")
   const ExistCover = props.cover;
   
   const slug = getSlugFromDocs(props.docs)
@@ -18,7 +20,7 @@ export default function Post(props: BlogPost){
             <div className="w-full h-48 overflow-hidden flex-shrink-0">
               <img 
                 src={props.cover} 
-                alt="cover/封面" 
+                alt={t("Cover")} 
                 className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
               />
             </div>

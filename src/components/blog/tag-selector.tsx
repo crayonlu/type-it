@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
+import { useTranslations } from "next-intl"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
@@ -17,6 +18,7 @@ export default function TagSelector({
   selectedTags,
   onTagsChange
 }: TagSelectorProps) {
+  const t = useTranslations("Blog.Sidebar")
   const [searchTerm, setSearchTerm] = useState("")
   const isInitialized = useRef(false)
 
@@ -58,7 +60,7 @@ export default function TagSelector({
     <>
       <div className="p-4 border-b border-t border-border">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-lg font-semibold">标签筛选</h2>
+          <h2 className="text-lg font-semibold">{t("TagFilter")}</h2>
           <div className="flex items-center space-x-2">
             <Button
               variant="outline"
@@ -66,7 +68,7 @@ export default function TagSelector({
               onClick={handleToggleSelectAll}
               className="text-xs"
             >
-              {areAllSelected ? '取消全选' : '全选'}
+              {areAllSelected ? t("DeselectAll") : t("SelectAll")}
             </Button>
             {selectedTags.length > 0 && (
               <Button
@@ -75,7 +77,7 @@ export default function TagSelector({
                 onClick={handleClear}
                 className="text-xs text-muted-foreground hover:text-foreground"
               >
-                清空 ({selectedTags.length})
+                {t("Clear")} ({selectedTags.length})
               </Button>
             )}
           </div>
@@ -84,7 +86,7 @@ export default function TagSelector({
         <div className="relative">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input
-            placeholder="搜索标签..."
+            placeholder={t("SearchTags")}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="pl-10"

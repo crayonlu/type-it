@@ -2,6 +2,7 @@
 
 // 所有博客展示页
 import { useState } from "react"
+import { useTranslations } from "next-intl"
 import blog_configs from "@/config/docs/Blog/config"
 import extractCategories from "@/lib/blog/extract-categories"
 import extractTags from "@/lib/blog/extract-tags"
@@ -11,6 +12,7 @@ import Post from "@/components/blog/post"
 import { GlowCapture } from "@codaworks/react-glow"
 
 export default function BlogsView(){
+  const t = useTranslations("Blog")
   const categories = extractCategories(blog_configs);
   const tags = extractTags(blog_configs);
   const [selectedCategories, setSelectedCategories] = useState<string[]>([])

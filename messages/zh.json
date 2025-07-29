@@ -21,5 +21,28 @@
     "Light": "浅色",
     "Dark": "深色",
     "System": "系统"
+  },
+  "Blog": {
+    "Sidebar": {
+      "Filter": "筛选器",
+      "CategoryFilter": "分类筛选",
+      "TagFilter": "标签筛选",
+      "SelectAll": "全选",
+      "DeselectAll": "取消全选",
+      "Clear": "清空",
+      "SearchCategories": "搜索分类...",
+      "SearchTags": "搜索标签..."
+    },
+    "Post": {
+      "Cover": "封面"
+    },
+    "Navigation": {
+      "ArticleNavigation": "文章导航",
+      "Previous": "上一篇",
+      "Next": "下一篇",
+      "AllArticles": "所有文章",
+      "BackToHome": "返回首页",
+      "CurrentArticle": "当前文章"
+    }
   }
 }
