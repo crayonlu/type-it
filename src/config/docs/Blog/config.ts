@@ -10,7 +10,16 @@ const blog_configs: BlogCategory[] = [
       {
         type: 'category',
         name: 'HTML',
-        children: []
+        children: [
+          {
+            type: 'post',
+            title: 'MDN文档',
+            desc: 'MDN对于HTML元素的速览',
+            time: '2025-7-29',
+            docs: `${BLOG_DOCS_BASE}/前端/HTML/MDN.md`,
+            tags: ['MDN','HTML']
+          }
+        ]
       },
       {
         type: 'category',
