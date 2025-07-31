@@ -16,7 +16,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   }
   
   const { prevPost, nextPost } = await getAdjacentPosts(slug)
-  console.log(prevPost,nextPost)
+  // console.log(prevPost,nextPost)
   
   return (
     <>

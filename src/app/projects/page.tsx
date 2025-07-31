@@ -1,4 +1,4 @@
-export default function Projects(){
+export default function ProjectsView(){
   return (
     <div>
       项目页

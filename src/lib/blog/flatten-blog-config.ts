@@ -70,26 +70,26 @@ export function getAdjacentBlogPosts(
 } {
   // 解码当前slug
   const decodedSlug = decodeURIComponent(currentSlug)
-  console.log('解码后的slug:', decodedSlug)
+  // console.log('解码后的slug:', decodedSlug)
   
   const allPosts = getAllFlattenedBlogPosts(blogConfig)
-  console.log('所有文章:', allPosts.map(p => ({ slug: p.slug, title: p.title })))
+  // console.log('所有文章:', allPosts.map(p => ({ slug: p.slug, title: p.title })))
   
   const currentIndex = allPosts.findIndex(post => post.slug === decodedSlug)
-  console.log('当前文章索引:', currentIndex)
+  // console.log('当前文章索引:', currentIndex)
   
   if (currentIndex === -1) {
-    console.log('未找到当前文章')
+    // console.log('未找到当前文章')
     return {}
   }
   
   const prevPost = currentIndex > 0 ? allPosts[currentIndex - 1] : undefined
   const nextPost = currentIndex < allPosts.length - 1 ? allPosts[currentIndex + 1] : undefined
   
-  console.log('相邻文章:', { 
-    prevPost: prevPost ? { slug: prevPost.slug, title: prevPost.title } : undefined,
-    nextPost: nextPost ? { slug: nextPost.slug, title: nextPost.title } : undefined
-  })
+  // console.log('相邻文章:', { 
+  //   prevPost: prevPost ? { slug: prevPost.slug, title: prevPost.title } : undefined,
+  //   nextPost: nextPost ? { slug: nextPost.slug, title: nextPost.title } : undefined
+  // })
   
   return { prevPost, nextPost }
 } 
