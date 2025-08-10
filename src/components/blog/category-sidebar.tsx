@@ -1,20 +1,22 @@
-"use client"
+'use client';
 
-import { useState } from "react"
-import { useTranslations } from "next-intl"
-import { ChevronLeft, ChevronRight } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { cn } from "@/lib/utils"
-import CategorySelector, { CategoryItem } from "./category-selector"
-import TagSelector from "./tag-selector"
+import { useState } from 'react';
+import { useTranslations } from 'next-intl';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
+import CategorySelector, { CategoryItem } from './category-selector';
+import TagSelector from './tag-selector';
 
 interface CategorySidebarProps {
   className?: string
   categories: CategoryItem[]
   selectedCategories: string[]
+  // eslint-disable-next-line no-unused-vars
   onCategoriesChange: (categories: string[]) => void
   tags: string[]
   selectedTags: string[]
+  // eslint-disable-next-line no-unused-vars
   onTagsChange: (tags: string[]) => void
 }
 
@@ -25,16 +27,16 @@ export default function CategorySidebar({
   tags,
   selectedTags,
   onTagsChange,
-  className
+  className,
 }: CategorySidebarProps) {
-  const t = useTranslations("Blog.Sidebar")
-  const [collapsed, setCollapsed] = useState(false)
+  const t = useTranslations('Blog.Sidebar');
+  const [collapsed, setCollapsed] = useState(false);
 
   return (
     <div className={cn(
-      "bg-card border-r border-border h-full flex flex-col transition-all duration-300 relative",
-      collapsed ? "w-12" : "w-80",
-      className
+      'bg-card border-r border-border h-full flex flex-col transition-all duration-300 relative',
+      collapsed ? 'w-12' : 'w-80',
+      className,
     )}>
       <Button
         variant="ghost"
@@ -68,9 +70,9 @@ export default function CategorySidebar({
         </div>
       ) : (
         <div className="flex flex-col items-center pt-12 text-muted-foreground">
-          <div className="rotate-90 whitespace-nowrap text-xs font-medium">{t("Filter")}</div>
+          <div className="rotate-90 whitespace-nowrap text-xs font-medium">{t('Filter')}</div>
         </div>
       )}
     </div>
-  )
+  );
 }

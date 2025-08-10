@@ -1,66 +1,67 @@
-"use client"
+'use client';
 
-import { useState, useEffect, useRef } from "react"
-import { useTranslations } from "next-intl"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Badge } from "@/components/ui/badge"
-import { Search } from "lucide-react"
+import { useState, useEffect, useRef } from 'react';
+import { useTranslations } from 'next-intl';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Badge } from '@/components/ui/badge';
+import { Search } from 'lucide-react';
 
 interface TagSelectorProps {
   tags: string[]
   selectedTags: string[]
+  // eslint-disable-next-line no-unused-vars
   onTagsChange: (tags: string[]) => void
 }
 
 export default function TagSelector({
   tags,
   selectedTags,
-  onTagsChange
+  onTagsChange,
 }: TagSelectorProps) {
-  const t = useTranslations("Blog.Sidebar")
-  const [searchTerm, setSearchTerm] = useState("")
-  const isInitialized = useRef(false)
+  const t = useTranslations('Blog.Sidebar');
+  const [searchTerm, setSearchTerm] = useState('');
+  const isInitialized = useRef(false);
 
   useEffect(() => {
     if (!isInitialized.current && tags.length > 0 && selectedTags.length === 0) {
-      onTagsChange(tags)
-      isInitialized.current = true
+      onTagsChange(tags);
+      isInitialized.current = true;
     }
-  }, [tags, selectedTags, onTagsChange])
+  }, [tags, selectedTags, onTagsChange]);
 
   const filteredTags = tags.filter(tag =>
-    tag.toLowerCase().includes(searchTerm.toLowerCase())
-  ).sort()
+    tag.toLowerCase().includes(searchTerm.toLowerCase()),
+  ).sort();
 
-  const areAllSelected = selectedTags.length > 0 && selectedTags.length === tags.length
+  const areAllSelected = selectedTags.length > 0 && selectedTags.length === tags.length;
 
   const handleToggleTag = (tag: string) => {
     if (selectedTags.includes(tag)) {
-      onTagsChange(selectedTags.filter(t => t !== tag))
+      onTagsChange(selectedTags.filter(t => t !== tag));
     } else {
-      onTagsChange([...selectedTags, tag])
+      onTagsChange([...selectedTags, tag]);
     }
-  }
+  };
 
   const handleToggleSelectAll = () => {
     if (areAllSelected) {
-      onTagsChange([])
+      onTagsChange([]);
     } else {
-      onTagsChange(tags)
+      onTagsChange(tags);
     }
-  }
+  };
   
   const handleClear = () => {
-    onTagsChange([])
-    setSearchTerm("")
-  }
+    onTagsChange([]);
+    setSearchTerm('');
+  };
 
   return (
     <>
       <div className="p-4 border-b border-t border-border">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-lg font-semibold">{t("TagFilter")}</h2>
+          <h2 className="text-lg font-semibold">{t('TagFilter')}</h2>
           <div className="flex items-center space-x-2">
             <Button
               variant="outline"
@@ -68,7 +69,7 @@ export default function TagSelector({
               onClick={handleToggleSelectAll}
               className="text-xs"
             >
-              {areAllSelected ? t("DeselectAll") : t("SelectAll")}
+              {areAllSelected ? t('DeselectAll') : t('SelectAll')}
             </Button>
             {selectedTags.length > 0 && (
               <Button
@@ -77,7 +78,7 @@ export default function TagSelector({
                 onClick={handleClear}
                 className="text-xs text-muted-foreground hover:text-foreground"
               >
-                {t("Clear")} ({selectedTags.length})
+                {t('Clear')} ({selectedTags.length})
               </Button>
             )}
           </div>
@@ -86,7 +87,7 @@ export default function TagSelector({
         <div className="relative">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input
-            placeholder={t("SearchTags")}
+            placeholder={t('SearchTags')}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="pl-10"
@@ -99,7 +100,7 @@ export default function TagSelector({
           {filteredTags.map((tag) => (
             <Badge
               key={tag}
-              variant={selectedTags.includes(tag) ? "default" : "secondary"}
+              variant={selectedTags.includes(tag) ? 'default' : 'secondary'}
               onClick={() => handleToggleTag(tag)}
               className="cursor-pointer transition-colors hover:bg-primary/80"
             >
@@ -109,5 +110,5 @@ export default function TagSelector({
         </div>
       </div>
     </>
-  )
+  );
 }

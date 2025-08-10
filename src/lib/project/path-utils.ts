@@ -4,17 +4,17 @@
  * @returns slug，如 "type-it"
  */
 export function getSlugFromProjectDocs(docs: string): string {
-  const match = docs.match(/Project\/(.+)\.md$/)
+  const match = docs.match(/Project\/(.+)\.md$/);
   if (match) {
-    return match[1]
+    return match[1];
   }
   
-  const fallbackMatch = docs.match(/([^\/]+)\.md$/)
+  const fallbackMatch = docs.match(/([^\/]+)\.md$/);
   if (fallbackMatch) {
-    return fallbackMatch[1]
+    return fallbackMatch[1];
   }
   
-  return docs.replace(/^.*\//, '').replace(/\.md$/, '')
+  return docs.replace(/^.*\//, '').replace(/\.md$/, '');
 }
 
 /**
@@ -23,7 +23,7 @@ export function getSlugFromProjectDocs(docs: string): string {
  * @returns 完整路径，如 "@/config/docs/Project/type-it.md"
  */
 export function getProjectDocsFromSlug(slug: string): string {
-  return `@/config/docs/Project/${slug}.md`
+  return `@/config/docs/Project/${slug}.md`;
 }
 
 /**
@@ -32,5 +32,5 @@ export function getProjectDocsFromSlug(slug: string): string {
  * @returns 是否为有效路径
  */
 export function isValidProjectPath(path: string): boolean {
-  return path.includes('Project/') && path.endsWith('.md')
+  return path.includes('Project/') && path.endsWith('.md');
 }

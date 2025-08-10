@@ -3,5 +3,5 @@ export default function About(){
     <div>
       这是关于页
     </div>
-  )
+  );
 }

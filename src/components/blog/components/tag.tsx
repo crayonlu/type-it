@@ -1,5 +1,5 @@
 // blog展示的tag
-import { Badge } from "@/components/ui/badge"
+import { Badge } from '@/components/ui/badge';
 
 export default function Tag(props:{
   tag: string
@@ -7,5 +7,5 @@ export default function Tag(props:{
 }){
   return (
     <Badge>{props.tag}</Badge>
-  )
+  );
 }

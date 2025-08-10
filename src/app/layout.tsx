@@ -40,7 +40,7 @@ export default async function RootLayout({
             defaultTheme="light"
             enableSystem={true}
             disableTransitionOnChange={false}
-            themes={["light", "dark", "system"]}
+            themes={['light', 'dark', 'system']}
           >
             <Header />
             {children}

@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import { usePathname } from "next/navigation";
-import { useEffect, useRef } from "react";
-import { actionsConfig, navConfig } from "@/config/header";
-import { animations, timelines } from "@config/gsap";
-import HeaderItem from "./components/header-item";
-import { ThemeToggle } from "@/components/theme/theme-toggle";
-import { LangToggle } from "@/components/lang/lang-toggle";
-import { useTranslations } from "next-intl";
+import { usePathname } from 'next/navigation';
+import { useEffect, useRef } from 'react';
+import { actionsConfig, navConfig } from '@/config/header';
+import { animations, timelines } from '@config/gsap';
+import HeaderItem from './components/header-item';
+import { ThemeToggle } from '@/components/theme/theme-toggle';
+import { LangToggle } from '@/components/lang/lang-toggle';
+import { useTranslations } from 'next-intl';
 
 export default function Header() {
   const pathname = usePathname();
@@ -15,13 +15,13 @@ export default function Header() {
   const logoRef = useRef<HTMLHeadingElement>(null);
   const navRef = useRef<HTMLElement>(null);
   const actionsRef = useRef<HTMLDivElement>(null);
-  const t = useTranslations("HomePage.Header");
-  const commonT = useTranslations("Common");
+  const t = useTranslations('HomePage.Header');
+  const commonT = useTranslations('Common');
 
   useEffect(() => {
     if (headerRef.current) {
       // 整个header从上方滑入
-      animations.slideIn(headerRef.current, "up", 0.8, 0.2);
+      animations.slideIn(headerRef.current, 'up', 0.8, 0.2);
     }
 
     if (logoRef.current) {
@@ -31,13 +31,13 @@ export default function Header() {
 
     if (navRef.current) {
       // 导航项序列动画
-      const navItems = navRef.current.querySelectorAll("a");
+      const navItems = navRef.current.querySelectorAll('a');
       timelines.sequence(Array.from(navItems), 0.1, 0.5);
     }
 
     if (actionsRef.current) {
       // 操作按钮从右侧滑入
-      animations.slideIn(actionsRef.current, "right", 0.6, 0.8);
+      animations.slideIn(actionsRef.current, 'right', 0.6, 0.8);
     }
   }, []);
 

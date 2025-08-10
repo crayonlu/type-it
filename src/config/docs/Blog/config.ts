@@ -1,6 +1,6 @@
 // 博客页配置文件
-import { BlogCategory } from "@/types/blog";
-import { BLOG_DOCS_BASE, BLOG_IMG_BASE} from "@/types/blog";
+import { BlogCategory } from '@/types/blog';
+import { BLOG_DOCS_BASE, BLOG_IMG_BASE} from '@/types/blog';
 
 const blog_configs: BlogCategory[] = [
   {
@@ -17,14 +17,14 @@ const blog_configs: BlogCategory[] = [
             desc: 'MDN对于HTML元素的速览',
             time: '2025-7-29',
             docs: `${BLOG_DOCS_BASE}/前端/HTML/MDN.md`,
-            tags: ['MDN','HTML']
-          }
-        ]
+            tags: ['MDN','HTML'],
+          },
+        ],
       },
       {
         type: 'category',
         name: 'CSS',
-        children: []
+        children: [],
       },
       {
         type: 'category',
@@ -36,7 +36,7 @@ const blog_configs: BlogCategory[] = [
             desc: '用三种方法调用cozeAPI，轮子高手',
             time: '2025-3-30',
             docs: `${BLOG_DOCS_BASE}/前端/JS/JS1.md`,
-            tags: ['JS','AJAX','NET']
+            tags: ['JS','AJAX','NET'],
           },
           {
             type: 'post',
@@ -44,7 +44,7 @@ const blog_configs: BlogCategory[] = [
             desc: 'JavaScript作为单线程语言，若没有异步机制，执行长时间任务时会导致整个应用响应变慢或无响应',
             time: '2025-3-30',
             docs: `${BLOG_DOCS_BASE}/前端/JS/JS2.md`,
-            tags: ['JS','异步','async']
+            tags: ['JS','异步','async'],
           },
           {
             type: 'post',
@@ -53,7 +53,7 @@ const blog_configs: BlogCategory[] = [
             time: '2025-3-30',
             docs: `${BLOG_DOCS_BASE}/前端/JS/JS3.md`,
             tags: ['JS','闭包'],
-            cover: `${BLOG_IMG_BASE}/前端/JS/JS3/close1.png`
+            cover: `${BLOG_IMG_BASE}/前端/JS/JS3/close1.png`,
           },
           {
             type: 'post',
@@ -61,21 +61,21 @@ const blog_configs: BlogCategory[] = [
             desc: '学学JS基础，嘻嘻',
             time: '2025-3-30',
             docs: `${BLOG_DOCS_BASE}/前端/JS/JS4.md`,
-            tags: ['JS','语法']
+            tags: ['JS','语法'],
           },
-        ]
+        ],
       },
       {
         type: 'category',
         name: 'Vue',
-        children: []
+        children: [],
       },
       {
         type: 'category',
         name: 'React',
-        children: []
+        children: [],
       },
-    ]
+    ],
   },
   {
     type: 'category',
@@ -90,10 +90,10 @@ const blog_configs: BlogCategory[] = [
         tags: [
           '点子',
           '小鸡',
-          'k3s'
-        ]
+          'k3s',
+        ],
       },
-    ]
+    ],
   },
   {
     type: 'category',
@@ -111,13 +111,13 @@ const blog_configs: BlogCategory[] = [
             docs: `${BLOG_DOCS_BASE}/生活/趣事/2025.4.5.md`,
             tags: [
               '哥们',
-              '唐'
+              '唐',
             ],
-            cover: `${BLOG_IMG_BASE}/生活/趣事/2025.4.5/长江3.jpg`
-          }
-        ]
+            cover: `${BLOG_IMG_BASE}/生活/趣事/2025.4.5/长江3.jpg`,
+          },
+        ],
       },
-    ]
+    ],
   },
   {
     type: 'category',
@@ -132,10 +132,10 @@ const blog_configs: BlogCategory[] = [
         tags: [
           '算法',
           '哈夫曼',
-          '编码'
+          '编码',
         ],
-      }
-    ]
+      },
+    ],
   },
   {
     type: 'category',
@@ -148,7 +148,7 @@ const blog_configs: BlogCategory[] = [
         time: '2025-5-29',
         docs: `${BLOG_DOCS_BASE}/我爱看电影/长安三万里.md`,
         tags: ['动画', '历史', '诗歌'],
-        cover: `${BLOG_IMG_BASE}/我爱看电影/长安三万里.png`
+        cover: `${BLOG_IMG_BASE}/我爱看电影/长安三万里.png`,
       },
       {
         type: 'post',
@@ -156,7 +156,7 @@ const blog_configs: BlogCategory[] = [
         desc: '詹姆斯·卡梅隆的科幻巨制续作',
         time: '2025-4-5',
         docs: `${BLOG_DOCS_BASE}/我爱看电影/阿凡达-水之道.md`,
-        tags: ['科幻', '视觉', '续作']
+        tags: ['科幻', '视觉', '续作'],
       },
       {
         type: 'post',
@@ -164,7 +164,7 @@ const blog_configs: BlogCategory[] = [
         desc: '勇敢追梦的故事',
         time: '2025-4-2',
         docs: `${BLOG_DOCS_BASE}/我爱看电影/白日梦想家.md`,
-        tags: ['励志', '冒险', '成长']
+        tags: ['励志', '冒险', '成长'],
       },
       {
         type: 'post',
@@ -172,7 +172,7 @@ const blog_configs: BlogCategory[] = [
         desc: '悬疑犯罪题材，直击人性和社会现实',
         time: '2025-6-6',
         docs: `${BLOG_DOCS_BASE}/我爱看电影/暴烈无声.md`,
-        tags: ['悬疑', '犯罪', '人性', '社会']
+        tags: ['悬疑', '犯罪', '人性', '社会'],
       },
       {
         type: 'post',
@@ -180,7 +180,7 @@ const blog_configs: BlogCategory[] = [
         desc: '黑色幽默与社会讽刺',
         time: '2025-4-2',
         docs: `${BLOG_DOCS_BASE}/我爱看电影/爆款好人.md`,
-        tags: ['黑色幽默', '社会', '讽刺']
+        tags: ['黑色幽默', '社会', '讽刺'],
       },
       {
         type: 'post',
@@ -188,7 +188,7 @@ const blog_configs: BlogCategory[] = [
         desc: '关于失去与救赎的故事',
         time: '2025-5-18',
         docs: `${BLOG_DOCS_BASE}/我爱看电影/海边的曼彻斯特.md`,
-        tags: ['家庭', '救赎', '情感']
+        tags: ['家庭', '救赎', '情感'],
       },
       {
         type: 'post',
@@ -196,7 +196,7 @@ const blog_configs: BlogCategory[] = [
         desc: '国产军事动作片',
         time: '2025-4-2',
         docs: `${BLOG_DOCS_BASE}/我爱看电影/蛟龙行动.md`,
-        tags: ['军事', '动作', '国产']
+        tags: ['军事', '动作', '国产'],
       },
       {
         type: 'post',
@@ -204,7 +204,7 @@ const blog_configs: BlogCategory[] = [
         desc: '荒诞喜剧，人生百态',
         time: '2025-4-2',
         docs: `${BLOG_DOCS_BASE}/我爱看电影/来福大酒店.md`,
-        tags: ['喜剧', '荒诞', '人生']
+        tags: ['喜剧', '荒诞', '人生'],
       },
       {
         type: 'post',
@@ -212,7 +212,7 @@ const blog_configs: BlogCategory[] = [
         desc: '国产动画续作',
         time: '2025-4-2',
         docs: `${BLOG_DOCS_BASE}/我爱看电影/哪吒2之魔童闹海.md`,
-        tags: ['动画', '神话', '华为']
+        tags: ['动画', '神话', '华为'],
       },
       {
         type: 'post',
@@ -220,7 +220,7 @@ const blog_configs: BlogCategory[] = [
         desc: '青涩纯真的爱情故事',
         time: '2025-4-2',
         docs: `${BLOG_DOCS_BASE}/我爱看电影/怦然心动.md`,
-        tags: ['爱情', '成长', '青春']
+        tags: ['爱情', '成长', '青春'],
       },
       {
         type: 'post',
@@ -228,7 +228,7 @@ const blog_configs: BlogCategory[] = [
         desc: '姜文导演的经典之作',
         time: '2025-4-6',
         docs: `${BLOG_DOCS_BASE}/我爱看电影/让子弹飞.md`,
-        tags: ['喜剧', '动作', '经典']
+        tags: ['喜剧', '动作', '经典'],
       },
       {
         type: 'post',
@@ -236,7 +236,7 @@ const blog_configs: BlogCategory[] = [
         desc: '迪士尼经典动画重制',
         time: '2025-4-17',
         docs: `${BLOG_DOCS_BASE}/我爱看电影/狮子王2009.md`,
-        tags: ['动画', '经典', '迪士尼']
+        tags: ['动画', '经典', '迪士尼'],
       },
       {
         type: 'post',
@@ -244,7 +244,7 @@ const blog_configs: BlogCategory[] = [
         desc: '悬疑推理题材',
         time: '2025-4-2',
         docs: `${BLOG_DOCS_BASE}/我爱看电影/唐探1900.md`,
-        tags: ['悬疑', '推理', '系列']
+        tags: ['悬疑', '推理', '系列'],
       },
       {
         type: 'post',
@@ -252,7 +252,7 @@ const blog_configs: BlogCategory[] = [
         desc: '国产悬疑犯罪片',
         time: '2025-4-12',
         docs: `${BLOG_DOCS_BASE}/我爱看电影/误杀3.md`,
-        tags: ['悬疑', '犯罪', '国产']
+        tags: ['悬疑', '犯罪', '国产'],
       },
       {
         type: 'post',
@@ -260,7 +260,7 @@ const blog_configs: BlogCategory[] = [
         desc: '喜剧与人生选择',
         time: '2025-4-2',
         docs: `${BLOG_DOCS_BASE}/我爱看电影/夏洛特烦恼.md`,
-        tags: ['喜剧', '人生', '选择']
+        tags: ['喜剧', '人生', '选择'],
       },
       {
         type: 'post',
@@ -268,7 +268,7 @@ const blog_configs: BlogCategory[] = [
         desc: '诺兰导演的科幻巨作',
         time: '2025-5-11',
         docs: `${BLOG_DOCS_BASE}/我爱看电影/星际穿越.md`,
-        tags: ['科幻', '太空', '诺兰']
+        tags: ['科幻', '太空', '诺兰'],
       },
       {
         type: 'post',
@@ -276,7 +276,7 @@ const blog_configs: BlogCategory[] = [
         desc: '现实与理想的碰撞',
         time: '2025-5-17',
         docs: `${BLOG_DOCS_BASE}/我爱看电影/也没有那么热血沸腾.md`,
-        tags: ['现实', '理想', '成长']
+        tags: ['现实', '理想', '成长'],
       },
       {
         type: 'post',
@@ -284,7 +284,7 @@ const blog_configs: BlogCategory[] = [
         desc: '关于生命与梦想的故事',
         time: '2025-4-17',
         docs: `${BLOG_DOCS_BASE}/我爱看电影/遗愿清单.md`,
-        tags: ['生命', '梦想', '感人']
+        tags: ['生命', '梦想', '感人'],
       },
       {
         type: 'post',
@@ -292,7 +292,7 @@ const blog_configs: BlogCategory[] = [
         desc: '经典动作片',
         time: '2025-4-2',
         docs: `${BLOG_DOCS_BASE}/我爱看电影/这个杀手不太冷.md`,
-        tags: ['动作', '经典', '情感']
+        tags: ['动作', '经典', '情感'],
       },
       {
         type: 'post',
@@ -300,7 +300,7 @@ const blog_configs: BlogCategory[] = [
         desc: '温馨治愈系电影',
         time: '2025-4-2',
         docs: `${BLOG_DOCS_BASE}/我爱看电影/抓娃娃.md`,
-        tags: ['温馨', '治愈', '家庭']
+        tags: ['温馨', '治愈', '家庭'],
       },
       {
         type: 'post',
@@ -308,9 +308,9 @@ const blog_configs: BlogCategory[] = [
         desc: '蝙蝠侠黑暗骑士',
         time: '2025-5-9',
         docs: `${BLOG_DOCS_BASE}/我爱看电影/The_Dark_Knight.md`,
-        tags: ['超级英雄', '黑暗', '诺兰']
-      }
-    ]
+        tags: ['超级英雄', '黑暗', '诺兰'],
+      },
+    ],
   },
   {
     type: 'category',
@@ -322,9 +322,9 @@ const blog_configs: BlogCategory[] = [
         desc: '异世界转生题材，成长与救赎',
         time: '2025-6-17',
         docs: `${BLOG_DOCS_BASE}/我爱看番/无职转生.md`,
-        tags: ['异世界', '成长', '救赎']
-      }
-    ]
+        tags: ['异世界', '成长', '救赎'],
+      },
+    ],
   },
 ];
 

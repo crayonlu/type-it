@@ -1,15 +1,15 @@
-"use client"
+'use client';
 
-import React from 'react'
-import ReactMarkdown from 'react-markdown'
-import remarkGfm from 'remark-gfm'
-import remarkToc from 'remark-toc'
-import rehypeSlug from 'rehype-slug'
-import rehypeAutolinkHeadings from 'rehype-autolink-headings'
-import rehypeRaw from 'rehype-raw'
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { tomorrow } from 'react-syntax-highlighter/dist/cjs/styles/prism'
-import { cn } from '@/lib/utils'
+import React from 'react';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import remarkToc from 'remark-toc';
+import rehypeSlug from 'rehype-slug';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import rehypeRaw from 'rehype-raw';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { tomorrow } from 'react-syntax-highlighter/dist/cjs/styles/prism';
+import { cn } from '@/lib/utils';
 
 interface MarkdownRenderProps {
   content: string
@@ -18,41 +18,44 @@ interface MarkdownRenderProps {
 
 export function MarkdownRender({ content, className }: MarkdownRenderProps) {
   return (
-    <div className={cn("prose prose-lg max-w-none dark:prose-invert", className)}>
+    <div className={cn('prose prose-lg max-w-none dark:prose-invert', className)}>
       <ReactMarkdown
         remarkPlugins={[
           remarkGfm,
-          [remarkToc, { tight: true, maxDepth: 6 }]
+          [remarkToc, { tight: true, maxDepth: 6 }],
         ]}
         rehypePlugins={[
           rehypeSlug,
           [rehypeAutolinkHeadings, { 
             behavior: 'wrap',
-            properties: { className: ['anchor-link'] }
+            properties: { className: ['anchor-link'] },
           }],
-          rehypeRaw
+          rehypeRaw,
         ]}
         components={{
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           code: ({ node, inline, className, children, ...props }: any) => {
-            const match = /language-(\w+)/.exec(className || '')
+            const match = /language-(\w+)/.exec(className || '');
             if (inline || !match) {
-              return <code {...props}>{children}</code>
+              return <code {...props}>{children}</code>;
             }
             
-            let codeString = ''
+            let codeString = '';
             
             if (node && node.children && node.children.length > 0) {
-              const firstChild = node.children[0]
+              const firstChild = node.children[0];
               if (firstChild && typeof firstChild.value === 'string') {
-                codeString = firstChild.value
+                codeString = firstChild.value;
               } else if (firstChild && firstChild.children && firstChild.children.length > 0) {
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 codeString = firstChild.children.map((child: any) => 
-                  child.value || child.children?.map((c: any) => c.value).join('') || ''
-                ).join('')
+                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                  child.value || child.children?.map((c: any) => c.value).join('') || '',
+                ).join('');
               }
             }
             
-            codeString = codeString.trimEnd()
+            codeString = codeString.trimEnd();
 
             return (
               <SyntaxHighlighter
@@ -68,7 +71,7 @@ export function MarkdownRender({ content, className }: MarkdownRenderProps) {
               >
                 {codeString}
               </SyntaxHighlighter>
-            )
+            );
           },
           table: ({ children, ...props }) => (
             <div className="overflow-x-auto my-4">
@@ -80,5 +83,5 @@ export function MarkdownRender({ content, className }: MarkdownRenderProps) {
         {content}
       </ReactMarkdown>
     </div>
-  )
+  );
 }

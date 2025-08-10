@@ -1,12 +1,12 @@
 // 通过筛选条件返回 Blog Post
-import type { BlogPost, BlogCategory } from "@/types/blog";
-import blog_configs from "@/config/docs/Blog/config";
+import type { BlogPost, BlogCategory } from '@/types/blog';
+import blog_configs from '@/config/docs/Blog/config';
 
 const recursiveFilter = (
   items: (BlogCategory | BlogPost)[],
   selectedCategories: string[],
   selectedTags: string[],
-  currentPath: string[]
+  currentPath: string[],
 ): BlogPost[] => {
   let results: BlogPost[] = [];
 
@@ -35,8 +35,8 @@ const recursiveFilter = (
           item.children,
           selectedCategories,
           selectedTags,
-          [...currentPath, item.name]
-        )
+          [...currentPath, item.name],
+        ),
       );
     }
   }

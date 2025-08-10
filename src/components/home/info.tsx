@@ -1,30 +1,31 @@
-'use client'
+'use client';
 
 // home页个人信息的展示
-import { avatar, nickname, getIntroduction } from "@/config";
-import ReactMarkdown from "react-markdown";
+import { avatar, nickname, getIntroduction } from '@/config';
+import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
-import remarkGfm from "remark-gfm";
-import { useEffect, useRef, useState } from "react";
-import { animations } from "@/config/gsap";
-import { useTranslations } from "next-intl";
-import { useLocale } from "next-intl";
+import remarkGfm from 'remark-gfm';
+import { useEffect, useRef, useState } from 'react';
+import { animations } from '@/config/gsap';
+import { useTranslations } from 'next-intl';
+import { useLocale } from 'next-intl';
+import Image from 'next/image';
 
 export default function Info() {
   const avatarRef = useRef<HTMLImageElement>(null);
   const nameRef = useRef<HTMLHeadingElement>(null);
   const introRef = useRef<HTMLDivElement>(null);
-  const t = useTranslations("Common");
+  const t = useTranslations('Common');
   const locale = useLocale();
-  const [introduction, setIntroduction] = useState<string>("");
+  const [introduction, setIntroduction] = useState<string>('');
 
   useEffect(() => {
     const loadIntroduction = async () => {
       try {
         const intro = await getIntroduction(locale);
         setIntroduction(intro);
-      } catch (error) {
-        console.error('Failed to load introduction:', error);
+      } catch {
+        // Fallback to default introduction if loading fails
         const { default: fallbackIntro } = await import('@/config/docs/Home/introduction.en.md');
         setIntroduction(fallbackIntro);
       }
@@ -63,10 +64,15 @@ export default function Info() {
   return (
     <main className="flex-1 flex gap-8 justify-center items-center px-48">
       <section className="flex-1 justify-center items-center flex">
-        <img 
+        <Image 
           ref={avatarRef}
           className="rounded-[50%] w-120 opacity-0"
-          src={ avatar } alt={t("Avatar")} />
+          src={avatar} 
+          alt={t('Avatar')} 
+          width={480}
+          height={480}
+          priority
+        />
       </section>
       <section className="flex-1 flex-col flex justify-center items-center gap-8">
         <h1 

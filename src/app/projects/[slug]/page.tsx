@@ -1,11 +1,11 @@
 // 项目详情页
-import { notFound } from "next/navigation"
-import { MarkdownRender } from "@/components/blog/markdown-render"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { ExternalLink } from "lucide-react"
-import Link from "next/link"
-import { getProjectBySlug, getAllProjectSlugs } from "@/lib/project/project-service"
+import { notFound } from 'next/navigation';
+import { MarkdownRender } from '@/components/blog/markdown-render';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { ExternalLink } from 'lucide-react';
+import Link from 'next/link';
+import { getProjectBySlug, getAllProjectSlugs } from '@/lib/project/project-service';
 
 interface ProjectPageProps {
   params: Promise<{
@@ -15,10 +15,10 @@ interface ProjectPageProps {
 
 export default async function ProjectPage({ params }: ProjectPageProps) {
   const resolvedParams = await params;
-  const project = await getProjectBySlug(resolvedParams.slug)
+  const project = await getProjectBySlug(resolvedParams.slug);
   
   if (!project) {
-    notFound()
+    notFound();
   }
 
   return (
@@ -85,10 +85,10 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         </section>
       )}
     </main>
-  )
+  );
 }
 
 export async function generateStaticParams() {
-  const slugs = await getAllProjectSlugs()
-  return slugs.map(slug => ({ slug }))
+  const slugs = await getAllProjectSlugs();
+  return slugs.map(slug => ({ slug }));
 }

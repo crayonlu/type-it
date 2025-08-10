@@ -14,7 +14,7 @@ export async function getIntroduction(locale: string) {
       const { default: introduction } = await import('./docs/Home/introduction.en.md');
       return introduction;
     }
-  } catch (error) {
+  } catch {
     const { default: introduction } = await import('./docs/Home/introduction.en.md');
     return introduction;
   }

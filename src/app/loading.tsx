@@ -1,7 +1,7 @@
-"use client"; 
+'use client'; 
 
-import { LoaderCircle } from "lucide-react";
-import { Glow, GlowCapture } from "@codaworks/react-glow";
+import { LoaderCircle } from 'lucide-react';
+import { Glow, GlowCapture } from '@codaworks/react-glow';
 
 export default function Loading() {
   return (

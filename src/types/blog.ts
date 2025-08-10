@@ -29,8 +29,8 @@ type CategoryNode = {
   children: CategoryNode[];
 };
 
-const BLOG_DOCS_BASE = '@/config/docs/Blog'
-const BLOG_IMG_BASE = '/images/Blog'
+const BLOG_DOCS_BASE = '@/config/docs/Blog';
+const BLOG_IMG_BASE = '/images/Blog';
 
 export type { BlogPost, BlogCategory, CategoryNode};
-export { BLOG_DOCS_BASE, BLOG_IMG_BASE}
+export { BLOG_DOCS_BASE, BLOG_IMG_BASE};

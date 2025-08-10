@@ -1,27 +1,30 @@
 // post
-import type { BlogPost } from "@/types/blog"
-import { useTranslations } from "next-intl"
-import Tag from "./components/tag";
-import { Glow } from "@codaworks/react-glow"
-import Link from "next/link"
-import { getSlugFromDocs } from "@/lib/blog/path-utils"
+import type { BlogPost } from '@/types/blog';
+import { useTranslations } from 'next-intl';
+import Tag from './components/tag';
+import { Glow } from '@codaworks/react-glow';
+import Link from 'next/link';
+import Image from 'next/image';
+import { getSlugFromDocs } from '@/lib/blog/path-utils';
 
 export default function Post(props: BlogPost){
-  const t = useTranslations("Blog.Post")
+  const t = useTranslations('Blog.Post');
   const ExistCover = props.cover;
   
-  const slug = getSlugFromDocs(props.docs)
+  const slug = getSlugFromDocs(props.docs);
 
   return (
     <Link href={`/blog/${slug}`} className="block">
       <Glow>
         <div className="glow:text-accent-foreground/50 glow:bg-accent break-inside-avoid mb-6 flex flex-col bg-card text-card-foreground rounded-[var(--radius)] shadow-sm overflow-hidden transition-all duration-300 hover:shadow-md border-1 cursor-pointer group">
-          {ExistCover && (
-            <div className="w-full h-48 overflow-hidden flex-shrink-0">
-              <img 
+          {ExistCover && props.cover && (
+            <div className="w-full h-48 overflow-hidden flex-shrink-0 relative">
+              <Image
                 src={props.cover} 
-                alt={t("Cover")} 
-                className="w-full h-full object-cover transition-transform duration-300"
+                alt={t('Cover')} 
+                fill
+                className="object-cover transition-transform duration-300"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
             </div>
           )}
@@ -53,5 +56,5 @@ export default function Post(props: BlogPost){
         </div>
       </Glow>
     </Link>
-  )
+  );
 }

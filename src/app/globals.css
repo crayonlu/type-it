@@ -23,6 +23,7 @@
   --color-input: hsl(214.3 31.8% 91.4%);
   --color-ring: hsl(222.2 84% 4.9%);
   --radius: 0.5rem;
+  --color-text: hsl(222.2 84% 4.9%);
   
   --font-family-sans: var(--font-geist-sans), system-ui, sans-serif;
   --font-family-mono: var(--font-geist-mono), monospace;
@@ -58,6 +59,7 @@
   --color-border: hsl(217.2 32.6% 17.5%);
   --color-input: hsl(217.2 32.6% 17.5%);
   --color-ring: hsl(224.3 76.3% 94.1%);
+  --color-text: hsl(217.2 91.2% 59.8%);
 }
 
 /* 针对 Webkit 浏览器 (Chrome, Safari) */
@@ -176,7 +178,7 @@ html {
 
 /* 链接样式 */
 .prose-container a {
-  @apply transition-colors text-primary hover:text-primary/80 no-underline;
+  @apply transition-colors text-text hover:text-text/80 no-underline;
 }
 
 /* 列表样式 */

@@ -13,8 +13,8 @@ interface Project{
   link?: string;
 }
 
-const PROJECT_DOCS_BASE = '@/config/docs/Project'
-const PROJECT_IMG_BASE = '/images/Projects'
+const PROJECT_DOCS_BASE = '@/config/docs/Project';
+const PROJECT_IMG_BASE = '/images/Projects';
 
 export type { Project };
-export { PROJECT_DOCS_BASE, PROJECT_IMG_BASE }
+export { PROJECT_DOCS_BASE, PROJECT_IMG_BASE };

@@ -1,13 +1,13 @@
-"use client"
+'use client';
 
-import { useState, useEffect, useRef } from "react"
-import { useTranslations } from "next-intl"
-import { Button } from "@/components/ui/button"
-import { Checkbox } from "@/components/ui/checkbox"
-import { Input } from "@/components/ui/input"
-import { Badge } from "@/components/ui/badge"
-import { Search, ChevronRight } from "lucide-react"
-import { cn } from "@/lib/utils"
+import { useState, useEffect, useRef } from 'react';
+import { useTranslations } from 'next-intl';
+import { Button } from '@/components/ui/button';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Input } from '@/components/ui/input';
+import { Badge } from '@/components/ui/badge';
+import { Search, ChevronRight } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 export interface CategoryItem {
   name: string
@@ -17,6 +17,7 @@ export interface CategoryItem {
 interface CategorySelectorProps {
   categories: CategoryItem[]
   selectedCategories: string[]
+  // eslint-disable-next-line no-unused-vars
   onCategoriesChange: (categories: string[]) => void
 }
 
@@ -24,22 +25,24 @@ interface CategoryNodeProps {
   category: CategoryItem
   level: number
   selectedCategories: string[]
+  // eslint-disable-next-line no-unused-vars
   onToggle: (categoryName: string) => void
   searchTerm: string
   expandedNodes: Set<string>
+  // eslint-disable-next-line no-unused-vars
   onToggleExpand: (categoryName: string) => void
 }
 
 const getAllCategoryNames = (cats: CategoryItem[]): string[] => {
-  let names: string[] = []
+  let names: string[] = [];
   cats.forEach(cat => {
-    names.push(cat.name)
+    names.push(cat.name);
     if (cat.children.length > 0) {
-      names = names.concat(getAllCategoryNames(cat.children))
+      names = names.concat(getAllCategoryNames(cat.children));
     }
-  })
-  return names
-}
+  });
+  return names;
+};
 
 function CategoryNode({ 
   category, 
@@ -48,32 +51,32 @@ function CategoryNode({
   onToggle, 
   searchTerm,
   expandedNodes,
-  onToggleExpand
+  onToggleExpand,
 }: CategoryNodeProps) {
-  const hasChildren = category.children.length > 0
-  const isExpanded = expandedNodes.has(category.name)
-  const isSelected = selectedCategories.includes(category.name)
+  const hasChildren = category.children.length > 0;
+  const isExpanded = expandedNodes.has(category.name);
+  const isSelected = selectedCategories.includes(category.name);
   
   const matchesSearch = searchTerm === '' || 
-    category.name.toLowerCase().includes(searchTerm.toLowerCase())
+    category.name.toLowerCase().includes(searchTerm.toLowerCase());
   
   const hasMatchingChildren = category.children.some(child => 
     child.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     child.children.some(grandChild => 
-      grandChild.name.toLowerCase().includes(searchTerm.toLowerCase())
-    )
-  )
+      grandChild.name.toLowerCase().includes(searchTerm.toLowerCase()),
+    ),
+  );
   
-  const shouldShow = matchesSearch || hasMatchingChildren
+  const shouldShow = matchesSearch || hasMatchingChildren;
   
-  if (!shouldShow) return null
+  if (!shouldShow) {return null;}
 
   return (
     <div className="space-y-1">
       <div 
         className={cn(
-          "flex items-center space-x-2 py-2 px-2 rounded-md hover:bg-muted/50 transition-colors group",
-          level > 0 && "ml-4"
+          'flex items-center space-x-2 py-2 px-2 rounded-md hover:bg-muted/50 transition-colors group',
+          level > 0 && 'ml-4',
         )}
       >
         <div className="flex h-4 w-4 items-center justify-center">
@@ -84,7 +87,7 @@ function CategoryNode({
               className="h-full w-full p-0 opacity-60 group-hover:opacity-100"
               onClick={() => onToggleExpand(category.name)}
             >
-              <ChevronRight className={cn("h-3 w-3 transition-transform duration-200", isExpanded && "rotate-90")} />
+              <ChevronRight className={cn('h-3 w-3 transition-transform duration-200', isExpanded && 'rotate-90')} />
             </Button>
           )}
         </div>
@@ -99,8 +102,8 @@ function CategoryNode({
         <label
           htmlFor={`category-${category.name}-${level}`}
           className={cn(
-            "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer flex-1",
-            matchesSearch && searchTerm && "bg-yellow-100 dark:bg-yellow-900/30 px-1 rounded "
+            'text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer flex-1',
+            matchesSearch && searchTerm && 'bg-yellow-100 dark:bg-yellow-900/30 px-1 rounded ',
           )}
         >
           {category.name}
@@ -115,8 +118,8 @@ function CategoryNode({
       
       <div
         className={cn(
-          "overflow-hidden transition-all duration-300 ease-in-out",
-          isExpanded ? "max-h-[1000px]" : "max-h-0"
+          'overflow-hidden transition-all duration-300 ease-in-out',
+          isExpanded ? 'max-h-[1000px]' : 'max-h-0',
         )}
       >
         {hasChildren && (
@@ -137,113 +140,113 @@ function CategoryNode({
         )}
       </div>
     </div>
-  )
+  );
 }
 
 export default function CategorySelector({ 
   categories, 
   selectedCategories, 
-  onCategoriesChange 
+  onCategoriesChange, 
 }: CategorySelectorProps) {
-  const t = useTranslations("Blog.Sidebar")
-  const [searchTerm, setSearchTerm] = useState("")
-  const [expandedNodes, setExpandedNodes] = useState<Set<string>>(new Set())
-  const isInitialized = useRef(false)
+  const t = useTranslations('Blog.Sidebar');
+  const [searchTerm, setSearchTerm] = useState('');
+  const [expandedNodes, setExpandedNodes] = useState<Set<string>>(new Set());
+  const isInitialized = useRef(false);
 
-  const allCategoryNames = getAllCategoryNames(categories)
-  const areAllSelected = selectedCategories.length > 0 && selectedCategories.length === allCategoryNames.length
+  const allCategoryNames = getAllCategoryNames(categories);
+  const areAllSelected = selectedCategories.length > 0 && selectedCategories.length === allCategoryNames.length;
 
   useEffect(() => {
     if (!isInitialized.current && categories.length > 0 && selectedCategories.length === 0) {
-      onCategoriesChange(allCategoryNames)
-      isInitialized.current = true
+      onCategoriesChange(allCategoryNames);
+      isInitialized.current = true;
     }
-  }, [categories, selectedCategories, onCategoriesChange, allCategoryNames])
+  }, [categories, selectedCategories, onCategoriesChange, allCategoryNames]);
 
   useEffect(() => {
     if (searchTerm) {
-      const newExpanded = new Set<string>()
+      const newExpanded = new Set<string>();
       
       const expandMatchingNodes = (cats: CategoryItem[]) => {
         cats.forEach(cat => {
           const hasMatchingChild = cat.children.some(child => 
-            child.name.toLowerCase().includes(searchTerm.toLowerCase())
-          )
+            child.name.toLowerCase().includes(searchTerm.toLowerCase()),
+          );
           if (hasMatchingChild) {
-            newExpanded.add(cat.name)
+            newExpanded.add(cat.name);
           }
-          expandMatchingNodes(cat.children)
-        })
-      }
+          expandMatchingNodes(cat.children);
+        });
+      };
       
-      expandMatchingNodes(categories)
-      setExpandedNodes(newExpanded)
+      expandMatchingNodes(categories);
+      setExpandedNodes(newExpanded);
     } else {
-      setExpandedNodes(new Set())
+      setExpandedNodes(new Set());
     }
-  }, [searchTerm, categories])
+  }, [searchTerm, categories]);
 
   const handleToggleCategory = (categoryName: string) => {
     const findCategory = (cats: CategoryItem[]): CategoryItem | undefined => {
       for (const cat of cats) {
-        if (cat.name === categoryName) return cat
-        const found = findCategory(cat.children)
-        if (found) return found
+        if (cat.name === categoryName) {return cat;}
+        const found = findCategory(cat.children);
+        if (found) {return found;}
       }
-      return undefined
-    }
-    const categoryObj = findCategory(categories)
-    if (!categoryObj) return
+      return undefined;
+    };
+    const categoryObj = findCategory(categories);
+    if (!categoryObj) {return;}
 
     const getChildCategoryNames = (cat: CategoryItem): string[] => {
-      let names = [cat.name]
+      let names = [cat.name];
       if (cat.children.length > 0) {
         cat.children.forEach(child => {
-          names = names.concat(getChildCategoryNames(child))
-        })
+          names = names.concat(getChildCategoryNames(child));
+        });
       }
-      return names
-    }
-    const allNames = getChildCategoryNames(categoryObj)
+      return names;
+    };
+    const allNames = getChildCategoryNames(categoryObj);
 
     if (selectedCategories.includes(categoryName)) {
-      onCategoriesChange(selectedCategories.filter(name => !allNames.includes(name)))
+      onCategoriesChange(selectedCategories.filter(name => !allNames.includes(name)));
     } else {
-      onCategoriesChange(Array.from(new Set([...selectedCategories, ...allNames])))
+      onCategoriesChange(Array.from(new Set([...selectedCategories, ...allNames])));
     }
-  }
+  };
 
   const handleToggleExpand = (categoryName: string) => {
     setExpandedNodes(prev => {
-      const newSet = new Set(prev)
+      const newSet = new Set(prev);
       if (newSet.has(categoryName)) {
-        newSet.delete(categoryName)
+        newSet.delete(categoryName);
       } else {
-        newSet.add(categoryName)
+        newSet.add(categoryName);
       }
-      return newSet
-    })
-  }
+      return newSet;
+    });
+  };
 
   const handleToggleSelectAll = () => {
     if (areAllSelected) {
-      onCategoriesChange([])
+      onCategoriesChange([]);
     } else {
-      onCategoriesChange(allCategoryNames)
+      onCategoriesChange(allCategoryNames);
     }
-  }
+  };
 
   const handleClear = () => {
-    onCategoriesChange([])
-    setSearchTerm("")
-    setExpandedNodes(new Set())
-  }
+    onCategoriesChange([]);
+    setSearchTerm('');
+    setExpandedNodes(new Set());
+  };
 
   return (
     <>
       <div className="p-4 border-b border-border">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-lg font-semibold">{t("CategoryFilter")}</h2>
+          <h2 className="text-lg font-semibold">{t('CategoryFilter')}</h2>
           <div className="flex items-center space-x-2">
             <Button
               variant="outline"
@@ -251,7 +254,7 @@ export default function CategorySelector({
               onClick={handleToggleSelectAll}
               className="text-xs"
             >
-              {areAllSelected ? t("DeselectAll") : t("SelectAll")}
+              {areAllSelected ? t('DeselectAll') : t('SelectAll')}
             </Button>
             {selectedCategories.length > 0 && (
               <Button
@@ -260,7 +263,7 @@ export default function CategorySelector({
                 onClick={handleClear}
                 className="text-xs text-muted-foreground hover:text-foreground"
               >
-                {t("Clear")} ({selectedCategories.length})
+                {t('Clear')} ({selectedCategories.length})
               </Button>
             )}
           </div>
@@ -269,7 +272,7 @@ export default function CategorySelector({
         <div className="relative">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input
-            placeholder={t("SearchCategories")}
+            placeholder={t('SearchCategories')}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="pl-10"
@@ -294,5 +297,5 @@ export default function CategorySelector({
         </div>
       </div>
     </>
-  )
+  );
 }

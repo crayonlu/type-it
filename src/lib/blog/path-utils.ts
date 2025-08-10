@@ -9,17 +9,17 @@
  * - "@/config/docs/Blog/算法与数据结构/哈夫曼.md" -> "算法与数据结构/哈夫曼"
  */
 export function getSlugFromDocs(docs: string): string {
-  const match = docs.match(/Blog\/(.+)\.md$/)
+  const match = docs.match(/Blog\/(.+)\.md$/);
   if (match) {
-    return match[1]
+    return match[1];
   }
   
-  const fallbackMatch = docs.match(/([^\/]+)\.md$/)
+  const fallbackMatch = docs.match(/([^\/]+)\.md$/);
   if (fallbackMatch) {
-    return fallbackMatch[1]
+    return fallbackMatch[1];
   }
   
-  return docs.replace(/^.*\//, '').replace(/\.md$/, '')
+  return docs.replace(/^.*\//, '').replace(/\.md$/, '');
 }
 
 /**
@@ -28,7 +28,7 @@ export function getSlugFromDocs(docs: string): string {
  * @returns 完整路径，如 "@/config/docs/Blog/前端/JS/JS1.md"
  */
 export function getDocsFromSlug(slug: string): string {
-  return `@/config/docs/Blog/${slug}.md`
+  return `@/config/docs/Blog/${slug}.md`;
 }
 
 /**
@@ -37,5 +37,5 @@ export function getDocsFromSlug(slug: string): string {
  * @returns 是否为有效路径
  */
 export function isValidBlogPath(path: string): boolean {
-  return path.includes('Blog/') && path.endsWith('.md')
+  return path.includes('Blog/') && path.endsWith('.md');
 } 
