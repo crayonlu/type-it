@@ -61,7 +61,7 @@ export default function Info() {
   }, []);
 
   return (
-    <main className="flex-1 flex gap-8 justify-center items-center">
+    <main className="flex-1 flex gap-8 justify-center items-center px-48">
       <section className="flex-1 justify-center items-center flex">
         <img 
           ref={avatarRef}

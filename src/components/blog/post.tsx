@@ -21,7 +21,7 @@ export default function Post(props: BlogPost){
               <img 
                 src={props.cover} 
                 alt={t("Cover")} 
-                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                className="w-full h-full object-cover transition-transform duration-300"
               />
             </div>
           )}

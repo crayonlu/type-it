@@ -44,5 +44,18 @@
       "BackToHome": "返回首页",
       "CurrentArticle": "当前文章"
     }
+  },
+  "Project": {
+    "Page": {
+      "Title": "项目",
+      "Description": "做一些喜欢的事情",
+      "NoProjects": "暂无项目展示"
+    },
+    "Cover": "项目封面",
+    "TechStack": "技术栈",
+    "ExternalLink": "外部链接",
+    "ViewDetails": "查看详情",
+    "Visit": "访问",
+    "Learn More": "了解更多"
   }
 }

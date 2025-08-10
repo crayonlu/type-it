@@ -54,7 +54,7 @@ export default function Header() {
               ref={logoRef}
               className="text-xl font-bold text-foreground"
             >
-              Type-It
+              Crayon...
             </h1>
           </div>
 

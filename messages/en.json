@@ -44,5 +44,18 @@
       "BackToHome": "Back to Home",
       "CurrentArticle": "Current Article"
     }
+  },
+  "Project": {
+    "Page": {
+      "Title": "Projects",
+      "Description": "Doing things I love",
+      "NoProjects": "No projects to display"
+    },
+    "Cover": "Project Cover",
+    "TechStack": "Tech Stack",
+    "ExternalLink": "External Link",
+    "ViewDetails": "View Details",
+    "Visit": "Visit",
+    "Learn More": "Learn More"
   }
 }
