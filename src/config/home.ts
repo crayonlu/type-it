@@ -19,6 +19,3 @@ export async function getIntroduction(locale: string) {
     return introduction;
   }
 }
-
-import introduction from './docs/Home/introduction.en.md';
-export { introduction };

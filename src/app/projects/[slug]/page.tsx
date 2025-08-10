@@ -1,42 +1,25 @@
 // 项目详情页
 import { notFound } from "next/navigation"
-import project_config from "@/config/docs/Project/config"
 import { MarkdownRender } from "@/components/blog/markdown-render"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { ExternalLink } from "lucide-react"
 import Link from "next/link"
+import { getProjectBySlug, getAllProjectSlugs } from "@/lib/project/project-service"
 
 interface ProjectPageProps {
-  params: {
+  params: Promise<{
     slug: string
-  }
-}
-
-// 动态导入 markdown 文档
-async function getProjectDocs(projectName: string) {
-  try {
-    // 直接根据项目名称导入对应的文档
-    if (projectName === 'Type-it') {
-      const { default: content } = await import(`@/config/docs/Project/Type-it.md`)
-      return content
-    }
-    return ""
-  } catch (error) {
-    console.error('Failed to load project docs:', error)
-    return ""
-  }
+  }>
 }
 
 export default async function ProjectPage({ params }: ProjectPageProps) {
-  const project = project_config.find(p => p.name === decodeURIComponent(params.slug))
+  const resolvedParams = await params;
+  const project = await getProjectBySlug(resolvedParams.slug)
   
   if (!project) {
     notFound()
   }
-
-  // 加载项目文档
-  const docsContent = await getProjectDocs(project.name)
 
   return (
     <main className="min-h-screen bg-background">
@@ -88,13 +71,13 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       </section>
 
       {/* 项目文档 Section */}
-      {docsContent && (
+      {project.content && (
         <section className="w-full">
           <div className="container mx-auto px-4 py-16">
             <div className="max-w-4xl mx-auto">
               <div className="prose-container">
                 <MarkdownRender 
-                  content={docsContent}
+                  content={project.content}
                 />
               </div>
             </div>
@@ -103,4 +86,9 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       )}
     </main>
   )
+}
+
+export async function generateStaticParams() {
+  const slugs = await getAllProjectSlugs()
+  return slugs.map(slug => ({ slug }))
 }
