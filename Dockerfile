@@ -1,21 +1,11 @@
 FROM node:20-alpine AS base
 
-RUN if [ "$(uname -m)" = "x86_64" ]; then \
-      npm install -g bun; \
-    else \
-      echo "Using npm for non-x86_64 architecture"; \
-    fi
-
 WORKDIR /app
 
 COPY package.json bun.lock* ./
 
 FROM base AS deps
-RUN if command -v bun >/dev/null 2>&1; then \
-      bun install --frozen-lockfile; \
-    else \
-      npm ci; \
-    fi
+RUN npm install
 
 FROM base AS builder
 WORKDIR /app
@@ -24,11 +14,7 @@ COPY . .
 
 ENV NEXT_TELEMETRY_DISABLED=1
 
-RUN if command -v bun >/dev/null 2>&1; then \
-      bun run build; \
-    else \
-      npm run build; \
-    fi
+RUN npm run build
 
 FROM base AS runner
 WORKDIR /app
