@@ -12,6 +12,11 @@ const compat = new FlatCompat({
 const eslintConfig = [
   ...compat.extends('next/core-web-vitals', 'next/typescript'),
   {
+    ignores: [
+      'src/components/ui/**',
+    ],
+  },
+  {
     rules: {
       // 基本代码质量规则
       'no-console': 'warn', // 警告console语句
@@ -37,9 +42,6 @@ const eslintConfig = [
       '@typescript-eslint/explicit-function-return-type': 'off',
       '@typescript-eslint/no-explicit-any': 'warn', // 警告使用any
     },
-    ignorePatterns: [
-      'src/components/ui/**',
-    ],
   },
 ];
 
