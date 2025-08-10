@@ -5,10 +5,18 @@ import { PROJECT_DOCS_BASE, PROJECT_IMG_BASE } from "@/types/project";
 const project_config: Project[] = [
   {
     name: "Type-it",
-    desc: "基于 Next.js 14 构建的现代化个人网站，集成了博客系统、项目展示、多语言支持等功能。采用 TypeScript 开发，使用 Tailwind CSS 进行样式设计，支持明暗主题切换。",
+    desc: "嘻嘻 这是基于NEXT的个人网站框架 采用Tailwind+React+Bun+Ts开发",
     cover: `${PROJECT_IMG_BASE}/type-it/cover.png`,
-    techStack: ["Next.js 14", "TypeScript", "Tailwind CSS", "next-intl", "Bun"],
-    link: "https://crayoncreator.top"
+    techStack: ["Next.js 15", "TypeScript", "Tailwind CSS", "next-intl", "Bun"],
+    link: "https://crayoncreator.top",
+    docs: `${PROJECT_DOCS_BASE}/Type-it.md`
+  },
+  {
+    name: "Zaptune",
+    desc: "发力发力 我要下载音乐 嘻嘻",
+    cover: `${PROJECT_IMG_BASE}/zaptune/cover.png`,
+    techStack: ["Vue","Pinia","Nginx"],
+    link: "https://zaptune.crayoncreator.top"
   },
 ];
 

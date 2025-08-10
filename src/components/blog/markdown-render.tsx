@@ -33,52 +33,10 @@ export function MarkdownRender({ content, className }: MarkdownRenderProps) {
           rehypeRaw
         ]}
         components={{
-          h1: ({ children, id, ...props }) => (
-            <h1 id={id} className="scroll-mt-20 text-3xl font-bold tracking-tight text-foreground border-b border-border pb-2 mb-6" {...props}>
-              {children}
-            </h1>
-          ),
-          h2: ({ children, id, ...props }) => (
-            <h2 id={id} className="scroll-mt-20 text-2xl font-semibold tracking-tight text-foreground border-b border-border pb-1 mb-4 mt-8" {...props}>
-              {children}
-            </h2>
-          ),
-          h3: ({ children, id, ...props }) => (
-            <h3 id={id} className="scroll-mt-20 text-xl font-semibold tracking-tight text-foreground mb-3 mt-6" {...props}>
-              {children}
-            </h3>
-          ),
-          h4: ({ children, id, ...props }) => (
-            <h4 id={id} className="scroll-mt-20 text-lg font-semibold tracking-tight text-foreground mb-2 mt-5" {...props}>
-              {children}
-            </h4>
-          ),
-          h5: ({ children, id, ...props }) => (
-            <h5 id={id} className="scroll-mt-20 text-base font-semibold tracking-tight text-foreground mb-2 mt-4" {...props}>
-              {children}
-            </h5>
-          ),
-          h6: ({ children, id, ...props }) => (
-            <h6 id={id} className="scroll-mt-20 text-sm font-semibold tracking-tight text-foreground mb-2 mt-3" {...props}>
-              {children}
-            </h6>
-          ),
-          p: ({ children, ...props }) => (
-            <p className="leading-7 text-foreground mb-4" {...props}>{children}</p>
-          ),
-          blockquote: ({ children, ...props }) => (
-            <blockquote className="border-l-4 border-primary bg-muted/50 pl-4 py-2 my-4 italic text-muted-foreground" {...props}>
-              {children}
-            </blockquote>
-          ),
           code: ({ node, inline, className, children, ...props }: any) => {
             const match = /language-(\w+)/.exec(className || '')
             if (inline || !match) {
-              return (
-                <code className="relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm text-foreground" {...props}>
-                  {children}
-                </code>
-              )
+              return <code {...props}>{children}</code>
             }
             
             let codeString = ''
@@ -112,33 +70,11 @@ export function MarkdownRender({ content, className }: MarkdownRenderProps) {
               </SyntaxHighlighter>
             )
           },
-          ul: ({ children, ...props }) => (
-            <ul className="list-disc list-inside space-y-2 mb-4 text-foreground" {...props}>{children}</ul>
-          ),
-          ol: ({ children, ...props }) => (
-            <ol className="list-decimal list-inside space-y-2 mb-4 text-foreground" {...props}>{children}</ol>
-          ),
-          li: ({ children, ...props }) => (
-            <li className="text-foreground" {...props}>{children}</li>
-          ),
           table: ({ children, ...props }) => (
-            <div className="overflow-x-auto my-4"><table className="min-w-full border-collapse border border-border" {...props}>{children}</table></div>
+            <div className="overflow-x-auto my-4">
+              <table {...props}>{children}</table>
+            </div>
           ),
-          th: ({ children, ...props }) => (
-            <th className="border border-border bg-muted px-4 py-2 text-left font-semibold text-foreground" {...props}>{children}</th>
-          ),
-          td: ({ children, ...props }) => (
-            <td className="border border-border px-4 py-2 text-foreground" {...props}>{children}</td>
-          ),
-          a: ({ children, href, ...props }) => (
-            <a href={href} className="underline underline-offset-4 transition-colors" {...props}>
-              {children}
-            </a>
-          ),
-          img: ({ src, alt, ...props }) => (
-            <img src={src} alt={alt} className="max-w-full h-auto rounded-lg my-4 shadow-sm" {...props} />
-          ),
-          hr: ({ ...props }) => <hr className="border-border my-8" {...props} />
         }}
       >
         {content}
