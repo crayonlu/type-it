@@ -75,30 +75,30 @@ jobs:
           
           echo "🚀 开始部署 type-it..."
           
-          # 登录到 GitHub Container Registry
-          echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+          # 设置代理环境变量（如果需要）
+          export http_proxy=http://127.0.0.1:7890
+          export https_proxy=http://127.0.0.1:7890
+          export HTTP_PROXY=http://127.0.0.1:7890
+          export HTTPS_PROXY=http://127.0.0.1:7890
           
-          # 拉取最新镜像
+          echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
           echo "📦 拉取最新镜像..."
           docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
           
-          # 停止并删除旧容器
           echo "🛑 停止旧容器..."
           docker stop type-it 2>/dev/null || true
           docker rm type-it 2>/dev/null || true
           
-          # 启动新容器
           echo "▶️ 启动新容器..."
           docker run -d \
             --name type-it \
             --restart unless-stopped \
-            -p 80:80 \
+            -p 3000:80 \
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
           
-          # 等待容器启动
           sleep 10
           
-          # 检查容器状态
           if docker ps | grep -q type-it; then
             echo "✅ 部署成功！"
           else
@@ -107,7 +107,6 @@ jobs:
             exit 1
           fi
           
-          # 清理旧镜像
           docker image prune -a -f --filter "until=24h" || true
         EOF
 
@@ -115,5 +114,3 @@ jobs:
       run: |
         echo "🔍 健康检查..."
         sleep 30
-        # 这里可以添加健康检查命令
-        # curl -f http://${{ secrets.SERVER_HOST }} || echo "服务可能还在启动中"
