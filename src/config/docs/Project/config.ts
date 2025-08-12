@@ -12,6 +12,14 @@ const project_config: Project[] = [
     docs: `${PROJECT_DOCS_BASE}/Type-it.md`,
   },
   {
+    name: 'PromptCopilot',
+    desc: '基于Tarui开发的一款简洁优雅的Prompt管理工具',
+    cover: `${PROJECT_IMG_BASE}/PromptCopilot/cover.png`,
+    techStack: ['Tarui', 'TypeScript', 'rust', 'React'],
+    link: 'https://github.com/crayonlu/PromptCopilot',
+    docs: `${PROJECT_DOCS_BASE}/PromptCopilot.md`,
+  },
+  {
     name: 'Zaptune',
     desc: '发力发力 我要下载音乐 嘻嘻',
     cover: `${PROJECT_IMG_BASE}/zaptune/cover.png`,

@@ -25,6 +25,7 @@ export default function Project(props: Project) {
                 alt={t('Cover')} 
                 width={400}
                 height={240}
+                quality={100}
                 className="w-full h-full object-cover transition-transform duration-300"
               />
             </div>
