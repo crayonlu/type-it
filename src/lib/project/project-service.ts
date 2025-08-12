@@ -12,6 +12,29 @@ export interface ProjectWithContent {
   content?: string
 }
 
+// 动态扫描项目markdown文件
+async function findProjectMarkdownFiles(): Promise<Map<string, string>> {
+  const projectDir = path.join(process.cwd(), 'src/config/docs/Project');
+  const markdownFiles = new Map<string, string>();
+  
+  try {
+    const entries = await fs.readdir(projectDir, { withFileTypes: true });
+    
+    for (const entry of entries) {
+      if (entry.isFile() && entry.name.endsWith('.md')) {
+        const filePath = path.join(projectDir, entry.name);
+        const projectName = entry.name.replace('.md', '');
+        markdownFiles.set(projectName, filePath);
+      }
+    }
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error('Failed to scan project markdown files:', error);
+  }
+  
+  return markdownFiles;
+}
+
 export async function getProjectBySlug(slug: string): Promise<ProjectWithContent | null> {
   // 项目slug应该与项目名称匹配，考虑URL编码和大小写
   const decodedSlug = decodeURIComponent(slug);
@@ -26,13 +49,13 @@ export async function getProjectBySlug(slug: string): Promise<ProjectWithContent
 
   let content = '';
   
-  if (project.docs) {
+  // 动态查找对应的markdown文件
+  const markdownFiles = await findProjectMarkdownFiles();
+  const markdownPath = markdownFiles.get(project.name);
+  
+  if (markdownPath) {
     try {
-      // 将TypeScript路径别名转换为实际文件路径
-      // project.docs 格式是 "@/config/docs/Project/Type-it.md"
-      const relativePath = project.docs.replace('@/', 'src/');
-      const docsPath = path.join(process.cwd(), relativePath);
-      content = await fs.readFile(docsPath, 'utf8');
+      content = await fs.readFile(markdownPath, 'utf8');
     } catch (error) {
       // eslint-disable-next-line no-console
       console.error('Failed to load project docs:', error);
