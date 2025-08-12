@@ -51,7 +51,7 @@ export default function Project(props: Project) {
                   {props.techStack.map((tech, index) => (
                     <span 
                       key={index}
-                      className="px-3 py-1 text-xs font-medium bg-primary/20 text-primary rounded-full border border-primary/30 transition-colors hover:bg-primary/30 dark:bg-primary/10 dark:border-primary/20 dark:hover:bg-primary/20"
+                      className="px-3 py-1 text-xs font-medium bg-primary/20 text-text rounded-full border border-primary/30 transition-colors hover:bg-primary/30 dark:bg-primary/10 dark:border-primary/20 dark:hover:bg-primary/20"
                     >
                       {tech}
                     </span>
