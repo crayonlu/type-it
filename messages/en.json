@@ -7,6 +7,19 @@
       "About": "About"
     }
   },
+  "About": {
+    "Title": "Hi there! I'm Crayon",
+    "Subtitle": "Cyber Security Student @ HUST",
+    "Role": "Member of BingYan Studio",
+    "TechStack": {
+      "Title": "Tech Stack",
+      "ProgrammingLanguages": "Programming Languages",
+      "FrontendFrameworks": "Frontend Frameworks",
+      "BackendRuntime": "Backend & Runtime",
+      "Databases": "Databases",
+      "DevOpsTools": "DevOps & Tools"
+    }
+  },
   "Common": {
     "Loading": "Loading...",
     "Avatar": "Avatar",

@@ -40,6 +40,11 @@ export const actionsConfig: HeaderConfig[] = [
     link: 'mailto:crayonlu@qq.com',
     icon: 'Mail',
   },
+  {
+    title: 'Nezha',
+    link: 'https://nezha.crayoncreator.top',
+    icon: 'Airplay',
+  },
 ];
 
 export const headerConfig = [...navConfig, ...actionsConfig];

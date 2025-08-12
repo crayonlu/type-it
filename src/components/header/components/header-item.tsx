@@ -18,6 +18,7 @@ import {
   Search,
   Menu,
   Computer,
+  Airplay,
 } from 'lucide-react';
 
 interface HeaderItemProps {
@@ -42,6 +43,7 @@ const iconMap = {
   Search,
   Menu,
   Computer,
+  Airplay,
 };
 
 export default function HeaderItem({ title, link, icon, isActive = false, index = 0 }: HeaderItemProps) {
