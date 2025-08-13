@@ -63,6 +63,15 @@ const blog_configs: BlogCategory[] = [
             docs: `${BLOG_DOCS_BASE}/前端/JS/JS4.md`,
             tags: ['JS','语法'],
           },
+          {
+            type: 'post',
+            title: 'Elysia',
+            desc: 'Elysia是一个轻量级的Web框架，它使用TypeScript编写，并提供了丰富的类型支持',
+            time: '2025-8-13',
+            docs: `${BLOG_DOCS_BASE}/前端/JS/elysia.md`,
+            tags: ['Elysia','JS','Web框架'],
+            cover: `${BLOG_IMG_BASE}/前端/JS/elysia/1.png`,
+          },
         ],
       },
       {
