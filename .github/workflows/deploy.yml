@@ -75,12 +75,6 @@ jobs:
           
           echo "🚀 开始部署 type-it..."
           
-          # 设置代理环境变量（如果需要）
-          export http_proxy=http://127.0.0.1:7890
-          export https_proxy=http://127.0.0.1:7890
-          export HTTP_PROXY=http://127.0.0.1:7890
-          export HTTPS_PROXY=http://127.0.0.1:7890
-          
           echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
           echo "📦 拉取最新镜像..."
