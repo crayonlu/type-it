@@ -1,8 +1,26 @@
 import type { NextConfig } from 'next';
 import createNextIntlPlugin from 'next-intl/plugin';
+import nextMDX from '@next/mdx';
+import rehypePrettyCode from 'rehype-pretty-code';
+
+/** @type {import('rehype-pretty-code').Options} */
+const rehypePrettyCodeOptions = {
+  theme: 'github-dark-dimmed',
+  keepBackground: false,
+  grid: true,
+};
+
+const withMDX = nextMDX({
+  extension: /\.mdx?$/,
+  options: {
+    remarkPlugins: [],
+    rehypePlugins: [[rehypePrettyCode, rehypePrettyCodeOptions]],
+  },
+});
 
 const nextConfig: NextConfig = {
   output: 'standalone',
+  pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
   images: {
     remotePatterns: [
       {
@@ -13,24 +31,11 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  webpack: (config) => {
-    // Add rule for markdown files
-    config.module.rules.push({
-      test: /\.md$/,
-      use: 'raw-loader',
-    });
-    return config;
-  },
-  turbopack: {
-    rules: {
-      '**/*.md': {
-        loaders: ['raw-loader'],
-        as: '*.js',
-      },
-    },
+  experimental: {
+    mdxRs: false,
   },
 };
 
 const withNextIntl = createNextIntlPlugin();
 
-export default withNextIntl(nextConfig);
+export default withNextIntl(withMDX(nextConfig));

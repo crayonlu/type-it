@@ -75,11 +75,9 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         <section className="w-full">
           <div className="container mx-auto px-4 py-16">
             <div className="max-w-4xl mx-auto">
-              <div className="prose-container">
-                <MarkdownRender 
-                  content={project.content}
-                />
-              </div>
+              <MarkdownRender 
+                content={project.content}
+              />
             </div>
           </div>
         </section>

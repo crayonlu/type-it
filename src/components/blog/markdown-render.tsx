@@ -1,87 +1,54 @@
 'use client';
 
-import React from 'react';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
-import remarkToc from 'remark-toc';
-import rehypeSlug from 'rehype-slug';
-import rehypeAutolinkHeadings from 'rehype-autolink-headings';
-import rehypeRaw from 'rehype-raw';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { tomorrow } from 'react-syntax-highlighter/dist/cjs/styles/prism';
-import { cn } from '@/lib/utils';
+import { unified } from 'unified';
+import remarkParse from 'remark-parse';
+import remarkRehype from 'remark-rehype';
+import rehypeStringify from 'rehype-stringify';
+import rehypePrettyCode from 'rehype-pretty-code';
+import { useEffect, useState } from 'react';
 
 interface MarkdownRenderProps {
-  content: string
-  className?: string
+  content: string;
 }
 
-export function MarkdownRender({ content, className }: MarkdownRenderProps) {
-  return (
-    <div className={cn('prose prose-lg max-w-none dark:prose-invert', className)}>
-      <ReactMarkdown
-        remarkPlugins={[
-          remarkGfm,
-          [remarkToc, { tight: true, maxDepth: 6 }],
-        ]}
-        rehypePlugins={[
-          rehypeSlug,
-          [rehypeAutolinkHeadings, { 
-            behavior: 'wrap',
-            properties: { className: ['anchor-link'] },
-          }],
-          rehypeRaw,
-        ]}
-        components={{
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          code: ({ node, inline, className, children, ...props }: any) => {
-            const match = /language-(\w+)/.exec(className || '');
-            if (inline || !match) {
-              return <code {...props}>{children}</code>;
-            }
-            
-            let codeString = '';
-            
-            if (node && node.children && node.children.length > 0) {
-              const firstChild = node.children[0];
-              if (firstChild && typeof firstChild.value === 'string') {
-                codeString = firstChild.value;
-              } else if (firstChild && firstChild.children && firstChild.children.length > 0) {
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                codeString = firstChild.children.map((child: any) => 
-                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                  child.value || child.children?.map((c: any) => c.value).join('') || '',
-                ).join('');
-              }
-            }
-            
-            codeString = codeString.trimEnd();
+export function MarkdownRender({ content }: MarkdownRenderProps) {
+  const [htmlContent, setHtmlContent] = useState<string>('');
 
-            return (
-              <SyntaxHighlighter
-                language={match[1]}
-                style={tomorrow}
-                className="rounded-lg"
-                customStyle={{ margin: 0, padding: '1rem', fontSize: '0.875rem', lineHeight: '1.5' }}
-                PreTag={({ children, ...preProps }) => (
-                  <pre className="overflow-x-auto rounded-lg bg-muted p-4 my-4 text-sm" {...preProps}>
-                    {children}
-                  </pre>
-                )}
-              >
-                {codeString}
-              </SyntaxHighlighter>
-            );
-          },
-          table: ({ children, ...props }) => (
-            <div className="overflow-x-auto my-4">
-              <table {...props}>{children}</table>
-            </div>
-          ),
-        }}
-      >
-        {content}
-      </ReactMarkdown>
-    </div>
+  useEffect(() => {
+    const processMarkdown = async () => {
+      try {
+        const file = await unified()
+          .use(remarkParse)
+          .use(remarkRehype)
+          .use(rehypePrettyCode, {
+            theme: 'github-dark-dimmed',
+            keepBackground: false,
+            grid: true,
+          })
+          .use(rehypeStringify)
+          .process(content);
+
+        setHtmlContent(String(file));
+      } catch (error) {
+        // 
+        console.error('Failed to process markdown:', error);
+        setHtmlContent(content);
+      }
+    };
+
+    if (content) {
+      processMarkdown();
+    }
+  }, [content]);
+
+  if (!htmlContent) {
+    return <div>Loading...</div>;
+  }
+
+  return (
+    <div 
+      className="prose prose-lg max-w-none dark:prose-invert"
+      dangerouslySetInnerHTML={{ __html: htmlContent }}
+    />
   );
 }

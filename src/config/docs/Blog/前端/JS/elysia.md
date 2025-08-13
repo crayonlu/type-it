@@ -6,7 +6,8 @@
 [官网](https://elysiajs.com)
 ## 创建一个Elysia项目
 创建的时候会自动 bun i (也就是安装需要的包)
-```
+
+```powershell
 // 1.使用Bun运行时
 powershell -c "irm bun.sh/install.ps1 | iex"
 // 2.创建项目
@@ -15,9 +16,10 @@ bun create elysia app
 cd app
 bun dev
 ```
+
 ## 基础概念和语法
 ### 引入
-```
+```typescript
 import { Elysia } from 'elysia'
 ```
 ### Tip
@@ -25,7 +27,7 @@ import { Elysia } from 'elysia'
 
 符合直觉 写法优雅
 
-```
+```typescript
 const app = new Elysia()
   // 使用.进行方法链调用 类似于链式调用(新特性有管道符调用 |>)
   .get('/', () => 'Hello World')
@@ -68,7 +70,7 @@ const app = new Elysia()
 3. 通配符路由(wildcards)
 
 ### 路由示例
-```
+```typescript
 new Elysia()
     // 静态路由
     .get('/id/1', 'static path')
@@ -81,25 +83,25 @@ new Elysia()
 ![路由](/images/Blog/前端/JS/elysia/1.png)
 #### 静态路由
 顾名思义 就是路径是固定的
-```
+```typescriptypescript
 .get('/id/1', 'static path')
 ```
 
 #### 动态路由
 使用`:`来定义动态路由
-```
+```typescript
 .get('/id/:id', 'dynamic path')
 ```
 
 #### 通配符路由
 使用`*`来定义通配符路由
-```
+```typescript
 .get('/id/*', 'wildcard path')
 ```
 
 #### 正则表达式路由
 Elysia支持使用正则表达式进行更精确的路由匹配
-```
+```typescript
 new Elysia()
     // 匹配以数字结尾的路径
     .get(/\/user\/\d+$/, 'user with numeric ID')
@@ -151,7 +153,7 @@ new Elysia()
 ```
 
 ## http动词
-```
+```typescript 
 // GET请求 
 .get('/user', () => {
     return 'GET request'
@@ -187,7 +189,7 @@ new Elysia()
 ### 群
 群组路由 可以用来管理一组路由<br>
 是一种简写模式 把`/user`一直作为路由的"根"
-```
+```typescript
 new Elysia()
     .group('/user', (app) =>
         app
@@ -200,7 +202,7 @@ new Elysia()
 
 ## Handler
 感觉就是个函数
-```
+```typescript
 new Elysia()
     .get('/user', () => {
         return 'User list'
@@ -209,14 +211,14 @@ new Elysia()
 ```
 ### status
 status是设置状态码的
-```
+```typescript
 new Elysia()
     .get('/', ({ status }) => status(418, "Kirifuji Nagisa"))
     .listen(3000)
 ```
 ### state
 状态 使用store来管理 用过zustand和pinia的应该会比较好接受 就是个store 用于跨请求共享数据(类似于跨组件通信)
-```
+```typescript
 new Elysia()
     .state('version', 1)
     .get('/a', ({ store: { version } }) => version)
@@ -233,7 +235,7 @@ new Elysia()
 挺常用的 可以用来处理请求体 响应体 路由参数 查询参数 等
 
 ### 支持插件系统
-```
+```typescript 
 new Elysia()
     .use(logger())
     .listen(3000)

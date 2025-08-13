@@ -2,14 +2,12 @@
 
 // home页个人信息的展示
 import { avatar, nickname, getIntroduction } from '@/config';
-import ReactMarkdown from 'react-markdown';
-import rehypeRaw from 'rehype-raw';
-import remarkGfm from 'remark-gfm';
 import { useEffect, useRef, useState } from 'react';
 import { animations } from '@/config/gsap';
 import { useTranslations } from 'next-intl';
 import { useLocale } from 'next-intl';
 import Image from 'next/image';
+import { MarkdownRender } from '@/components/blog/markdown-render';
 
 export default function Info() {
   const avatarRef = useRef<HTMLImageElement>(null);
@@ -81,11 +79,9 @@ export default function Info() {
         >{ nickname }</h1>
         <div 
           ref={introRef}
-          className="prose max-w-none opacity-0 tracking-widest"
+          className="opacity-0 tracking-widest"
         >
-          <ReactMarkdown rehypePlugins={[rehypeRaw,remarkGfm]}>
-            { introduction }
-          </ReactMarkdown>
+          <MarkdownRender content={introduction} />
         </div>
       </section>
     </main>

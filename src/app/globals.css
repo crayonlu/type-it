@@ -81,179 +81,23 @@ html {
     -ms-overflow-style: none; /* 隐藏滚动条 */
 }
 
-/* prose */
-.prose {
-  --tw-prose-body: hsl(222.2 84% 4.9%);
-  --tw-prose-headings: hsl(222.2 84% 4.9%);
-  --tw-prose-lead: hsl(222.2 84% 4.9%);
-  --tw-prose-links: hsl(221.2 83.2% 53.3%);
-  --tw-prose-bold: hsl(222.2 84% 4.9%);
-  --tw-prose-counters: hsl(222.2 84% 4.9%);
-  --tw-prose-bullets: hsl(222.2 84% 4.9%);
-  --tw-prose-hr: hsl(214.3 31.8% 91.4%);
-  --tw-prose-quotes: hsl(222.2 84% 4.9%);
-  --tw-prose-quote-borders: hsl(214.3 31.8% 91.4%);
-  --tw-prose-captions: hsl(222.2 84% 4.9%);
-  --tw-prose-code: hsl(222.2 84% 4.9%);
-  --tw-prose-pre-code: hsl(210 40% 98%);
-  --tw-prose-pre-bg: hsl(222.2 84% 4.9%);
-  --tw-prose-th-borders: hsl(214.3 31.8% 91.4%);
-  --tw-prose-td-borders: hsl(214.3 31.8% 91.4%);
-}
-
-.dark .prose {
-  --tw-prose-body: hsl(210 40% 98%);
-  --tw-prose-headings: hsl(210 40% 98%);
-  --tw-prose-lead: hsl(210 40% 98%);
-  --tw-prose-links: hsl(217.2 91.2% 59.8%);
-  --tw-prose-bold: hsl(210 40% 98%);
-  --tw-prose-counters: hsl(210 40% 98%);
-  --tw-prose-bullets: hsl(210 40% 98%);
-  --tw-prose-hr: hsl(217.2 32.6% 17.5%);
-  --tw-prose-quotes: hsl(210 40% 98%);
-  --tw-prose-quote-borders: hsl(217.2 32.6% 17.5%);
-  --tw-prose-captions: hsl(210 40% 98%);
-  --tw-prose-code: hsl(210 40% 98%);
-  --tw-prose-pre-code: hsl(222.2 84% 4.9%);
-  --tw-prose-pre-bg: hsl(210 40% 98%);
-  --tw-prose-th-borders: hsl(217.2 32.6% 17.5%);
-  --tw-prose-td-borders: hsl(217.2 32.6% 17.5%);
-}
-
-/* Markdown 容器样式 - 统一管理所有 Markdown 渲染样式 */
-.prose-container {
-  @apply max-w-none;
-}
-
-.prose-container .prose {
-  @apply max-w-none;
-}
-
-/* 标题样式 */
-.prose-container h1 {
-  @apply scroll-mt-20 text-3xl font-bold tracking-tight text-foreground border-b border-border pb-2 mb-6;
-}
-
-.prose-container h2 {
-  @apply scroll-mt-20 text-2xl font-semibold tracking-tight text-foreground border-b border-border pb-1 mb-4 mt-8;
-}
-
-.prose-container h3 {
-  @apply scroll-mt-20 text-xl font-semibold tracking-tight text-foreground mb-3 mt-6;
-}
-
-.prose-container h4 {
-  @apply scroll-mt-20 text-lg font-semibold tracking-tight text-foreground mb-2 mt-5;
-}
-
-.prose-container h5 {
-  @apply scroll-mt-20 text-base font-semibold tracking-tight text-foreground mb-2 mt-4;
-}
-
-.prose-container h6 {
-  @apply scroll-mt-20 text-sm font-semibold tracking-tight text-foreground mb-2 mt-3;
-}
-
-/* 段落和文本样式 */
-.prose-container p {
-  @apply leading-7 text-foreground mb-4;
-}
-
-.prose-container blockquote {
-  @apply border-l-4 border-primary bg-muted/50 pl-4 py-2 my-4 italic text-muted-foreground;
-}
-
-/* 代码样式 */
-.prose-container pre {
-  @apply overflow-x-auto rounded-lg bg-muted p-4 my-4 text-sm border border-border;
-}
-
-.prose-container code {
-  @apply relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm text-foreground;
-}
-
-.prose-container pre code {
-  @apply bg-transparent p-0 text-foreground;
-}
-
-/* 链接样式 */
-.prose-container a {
-  @apply transition-colors text-text hover:text-text/80 no-underline;
-}
-
-/* 列表样式 */
-.prose-container ul {
-  @apply list-disc list-inside space-y-2 mb-4 text-foreground;
-}
-
-.prose-container ol {
-  @apply list-decimal list-inside space-y-2 mb-4 text-foreground;
-}
-
-.prose-container li {
-  @apply text-foreground;
-}
-
-/* 表格样式 */
-.prose-container table {
-  @apply w-full border-collapse border border-border my-4;
-}
-
-.prose-container th {
-  @apply border border-border bg-muted px-4 py-2 text-left font-semibold text-foreground;
-}
-
-.prose-container td {
-  @apply border border-border px-4 py-2 text-foreground;
-}
-
-/* 图片样式 */
-.prose-container img {
-  @apply max-w-full h-auto rounded-lg shadow-sm my-4;
-}
-
-/* 分割线样式 */
-.prose-container hr {
-  @apply border-border my-8;
-}
-
-/* 语法高亮样式 */
-.prose-container pre[class*="language-"],
-.prose-container code[class*="language-"] {
-  @apply bg-muted text-foreground;
-}
-
-.prose-container .react-syntax-highlighter {
-  @apply rounded-lg border border-border;
-}
-
-/* 深色主题下的语法高亮 */
-.dark .prose-container pre[class*="language-"],
-.dark .prose-container code[class*="language-"] {
-  @apply bg-muted text-foreground;
-}
-
-.dark .prose-container .react-syntax-highlighter {
-  @apply bg-muted border-border;
-}
-
 /* 滚动条样式 */
-.prose-container ::-webkit-scrollbar {
+::-webkit-scrollbar {
   @apply w-2 h-2;
 }
 
-.prose-container ::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
   @apply bg-muted rounded;
 }
 
-.prose-container ::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
   @apply bg-border rounded hover:bg-border/80;
 }
 
-.dark .prose-container ::-webkit-scrollbar-track {
+.dark ::-webkit-scrollbar-track {
   @apply bg-muted;
 }
 
-.dark .prose-container ::-webkit-scrollbar-thumb {
+.dark ::-webkit-scrollbar-thumb {
   @apply bg-border hover:bg-border/80;
 }

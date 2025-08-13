@@ -19,7 +19,6 @@ const eslintConfig = [
   {
     rules: {
       // 基本代码质量规则
-      'no-console': 'warn', // 警告console语句
       'no-debugger': 'error', // 禁止debugger
       'no-unused-vars': 'warn', // 警告未使用的变量
       'prefer-const': 'error', // 优先使用const
