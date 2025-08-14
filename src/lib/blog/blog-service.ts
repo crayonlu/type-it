@@ -31,7 +31,6 @@ async function findAllMarkdownFiles(dir: string): Promise<string[]> {
       }
     }
   } catch (error) {
-    // eslint-disable-next-line no-console
     console.error(`读取目录失败: ${dir}`, error);
   }
   
@@ -67,7 +66,6 @@ export async function getAllBlogPosts(): Promise<BlogPostContent[]> {
         filePath,
       });
     } catch (error) {
-      // eslint-disable-next-line no-console
       console.error(`读取文件失败: ${filePath}`, error);
     }
   }

@@ -1,36 +1,23 @@
 'use client';
 
 // home页个人信息的展示
-import { avatar, nickname, getIntroduction } from '@/config';
-import { useEffect, useRef, useState } from 'react';
+import { avatar, nickname } from '@/config';
+import { useEffect, useRef } from 'react';
 import { animations } from '@/config/gsap';
 import { useTranslations } from 'next-intl';
-import { useLocale } from 'next-intl';
 import Image from 'next/image';
 import { MarkdownRender } from '@/components/blog/markdown-render';
 
-export default function Info() {
+
+interface InfoProps {
+  introduction: string;
+}
+
+export default function Info({ introduction }: InfoProps) {
   const avatarRef = useRef<HTMLImageElement>(null);
   const nameRef = useRef<HTMLHeadingElement>(null);
   const introRef = useRef<HTMLDivElement>(null);
   const t = useTranslations('Common');
-  const locale = useLocale();
-  const [introduction, setIntroduction] = useState<string>('');
-
-  useEffect(() => {
-    const loadIntroduction = async () => {
-      try {
-        const intro = await getIntroduction(locale);
-        setIntroduction(intro);
-      } catch {
-        // Fallback to default introduction if loading fails
-        const { default: fallbackIntro } = await import('@/config/docs/Home/introduction.en.md');
-        setIntroduction(fallbackIntro);
-      }
-    };
-
-    loadIntroduction();
-  }, [locale]);
 
   useEffect(() => {
     // 头像缩放
