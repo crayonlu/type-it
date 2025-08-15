@@ -3,6 +3,7 @@
 import { unified } from 'unified';
 import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
+import remarkGfm from 'remark-gfm';
 import rehypeStringify from 'rehype-stringify';
 import rehypePrettyCode from 'rehype-pretty-code';
 import { useEffect, useState } from 'react';
@@ -19,6 +20,7 @@ export function MarkdownRender({ content }: MarkdownRenderProps) {
       try {
         const file = await unified()
           .use(remarkParse)
+          .use(remarkGfm)
           .use(remarkRehype)
           .use(rehypePrettyCode, {
             theme: 'github-dark-dimmed',
