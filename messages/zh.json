@@ -36,7 +36,12 @@
     "System": "系统"
   },
   "Blog": {
+    "Page": {
+      "Title": "博客",
+      "Description": "分享我的想法和经验"
+    },
     "Sidebar": {
+      "Title": "博客",
       "Filter": "筛选器",
       "CategoryFilter": "分类筛选",
       "TagFilter": "标签筛选",
@@ -44,7 +49,8 @@
       "DeselectAll": "取消全选",
       "Clear": "清空",
       "SearchCategories": "搜索分类...",
-      "SearchTags": "搜索标签..."
+      "SearchTags": "搜索标签...",
+      "NoPosts": "没有博客喵"
     },
     "Post": {
       "Cover": "封面"

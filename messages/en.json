@@ -36,15 +36,21 @@
     "System": "System"
   },
   "Blog": {
+    "Page": {
+      "Title": "Blog",
+      "Description": "Sharing my thoughts and experiences"
+    },
     "Sidebar": {
+      "Title": "Blog",
       "Filter": "Filter",
-      "CategoryFilter": "Category Filter",
-      "TagFilter": "Tag Filter",
+      "CategoryFilter": "Category",
+      "TagFilter": "Tag",
       "SelectAll": "Select All",
       "DeselectAll": "Deselect All",
       "Clear": "Clear",
       "SearchCategories": "Search categories...",
-      "SearchTags": "Search tags..."
+      "SearchTags": "Search tags...",
+      "NoPosts": "No Posts"
     },
     "Post": {
       "Cover": "Cover"

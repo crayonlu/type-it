@@ -27,6 +27,8 @@ interface HeaderItemProps {
   icon: string;
   isActive?: boolean;
   index?: number;
+  onClick?: () => void;
+  className?: string;
 }
 
 const iconMap = {
@@ -46,7 +48,7 @@ const iconMap = {
   Airplay,
 };
 
-export default function HeaderItem({ title, link, icon, isActive = false, index = 0 }: HeaderItemProps) {
+export default function HeaderItem({ title, link, icon, isActive = false, index = 0, onClick, className }: HeaderItemProps) {
   const itemRef = useRef<HTMLAnchorElement>(null);
   const IconComponent = iconMap[icon as keyof typeof iconMap] || Circle;
 
@@ -65,12 +67,14 @@ export default function HeaderItem({ title, link, icon, isActive = false, index 
       href={link}
       target={isExternalLink ? '_blank' : undefined}
       rel={isExternalLink ? 'noopener noreferrer' : undefined}
+      onClick={onClick}
       className={cn(
         'group relative flex items-center gap-2 px-3 py-2 text-sm font-medium rounded-md transition-colors',
         'hover:bg-accent hover:text-accent-foreground',
         isActive 
           ? 'bg-accent text-accent-foreground' 
           : 'text-muted-foreground',
+        className,
       )}
     >
       <IconComponent className="h-4 w-4" />
