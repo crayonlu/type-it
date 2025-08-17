@@ -7,6 +7,7 @@ import remarkGfm from 'remark-gfm';
 import rehypeStringify from 'rehype-stringify';
 import rehypePrettyCode from 'rehype-pretty-code';
 import { useEffect, useState } from 'react';
+import { useTheme } from 'next-themes';
 
 interface MarkdownRenderProps {
   content: string;
@@ -14,6 +15,8 @@ interface MarkdownRenderProps {
 
 export function MarkdownRender({ content }: MarkdownRenderProps) {
   const [htmlContent, setHtmlContent] = useState<string>('');
+  const { resolvedTheme } = useTheme();
+  const isDark = resolvedTheme === 'dark';
 
   useEffect(() => {
     const processMarkdown = async () => {
@@ -23,7 +26,7 @@ export function MarkdownRender({ content }: MarkdownRenderProps) {
           .use(remarkGfm)
           .use(remarkRehype)
           .use(rehypePrettyCode, {
-            theme: 'github-dark-dimmed',
+            theme: isDark ? 'github-dark-dimmed' : 'github-light',
             keepBackground: false,
             grid: true,
           })
@@ -32,7 +35,6 @@ export function MarkdownRender({ content }: MarkdownRenderProps) {
 
         setHtmlContent(String(file));
       } catch (error) {
-        // 
         console.error('Failed to process markdown:', error);
         setHtmlContent(content);
       }
@@ -41,7 +43,7 @@ export function MarkdownRender({ content }: MarkdownRenderProps) {
     if (content) {
       processMarkdown();
     }
-  }, [content]);
+  }, [content, isDark]);
 
   if (!htmlContent) {
     return <div>Loading...</div>;
@@ -49,7 +51,11 @@ export function MarkdownRender({ content }: MarkdownRenderProps) {
 
   return (
     <div 
-      className="prose prose-lg max-w-none dark:prose-invert"
+      className={`prose prose-lg max-w-none ${
+        isDark 
+          ? 'dark:prose-invert prose-headings:text-white prose-p:text-white prose-strong:text-white prose-code:text-white prose-pre:bg-gray-100 prose-pre:text-gray-900' 
+          : 'prose-headings:text-black prose-p:text-black prose-strong:text-black prose-code:text-black prose-pre:bg-gray-800 prose-pre:text-gray-100'
+      }`}
       dangerouslySetInnerHTML={{ __html: htmlContent }}
     />
   );
