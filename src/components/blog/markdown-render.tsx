@@ -27,7 +27,7 @@ export function MarkdownRender({ content }: MarkdownRenderProps) {
           .use(remarkRehype)
           .use(rehypePrettyCode, {
             theme: isDark ? 'github-dark-dimmed' : 'github-light',
-            keepBackground: false,
+            keepBackground: true,
             grid: true,
           })
           .use(rehypeStringify)
