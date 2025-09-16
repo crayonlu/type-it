@@ -51,7 +51,7 @@ export function MarkdownRender({ content }: MarkdownRenderProps) {
 
   return (
     <div 
-      className={`prose prose-lg max-w-none ${
+      className={`prose prose-lg ${
         isDark 
           ? 'dark:prose-invert prose-headings:text-white prose-p:text-white prose-strong:text-white prose-code:text-white prose-pre:bg-gray-100 prose-pre:text-gray-900' 
           : 'prose-headings:text-black prose-p:text-black prose-strong:text-black prose-code:text-black prose-pre:bg-gray-800 prose-pre:text-gray-100'

@@ -23,7 +23,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       <ReadingProgress />
      
       <main className="min-h-screen bg-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className=" mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="flex gap-8">
             <aside className="hidden lg:block w-80 flex-shrink-0">
               <TableOfContents 
@@ -31,7 +31,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               />
             </aside>
 
-            <article className="flex-1 max-w-4xl">
+            <article className="flex-1 max-w-full">
               <header className="mb-8 pb-8 border-b border-border">
                 <h1 className="text-4xl font-bold text-foreground mb-4 leading-tight">
                   {post.title}
@@ -52,7 +52,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                 </div>
               </header>
 
-              <div className="max-w-4xl mx-auto">
+              <div className="mx-auto">
                 <MarkdownRender 
                   content={post.content}
                 />

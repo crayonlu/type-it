@@ -26,13 +26,13 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       {/* 项目信息 Section */}
       <section className="w-full border-b border-border bg-card">
         <div className="container mx-auto px-4 py-16 md:py-24">
-          <div className="max-w-4xl mx-auto">
+          <div className="mx-auto">
             {/* 项目标题 */}
             <div className="text-center mb-8">
               <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
                 {project.name}
               </h1>
-              <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              <p className="text-xl text-muted-foreground mx-auto leading-relaxed">
                 {project.desc}
               </p>
             </div>
@@ -74,7 +74,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       {project.content && (
         <section className="w-full">
           <div className="container mx-auto px-4 py-16">
-            <div className="max-w-4xl mx-auto">
+            <div className="mx-auto">
               <MarkdownRender 
                 content={project.content}
               />
