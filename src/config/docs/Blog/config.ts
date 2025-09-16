@@ -148,6 +148,20 @@ const blog_configs: BlogCategory[] = [
   },
   {
     type: 'category',
+    name: '配网日记',
+    children: [
+      {
+        type: 'post',
+        title: '神秘配网',
+        desc: '配网日记之神秘UDP53和PROXY',
+        time: '2025-9-16',
+        docs: `${BLOG_DOCS_BASE}/计网/net/神秘配网.md`,
+        tags: ['配网', 'UDP53', 'PROXY'],
+      },
+    ],
+  },
+  {
+    type: 'category',
     name: '我爱看电影',
     children: [
       {
