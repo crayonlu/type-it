@@ -44,36 +44,45 @@ export function TableOfContents({ content, className }: TableOfContentsProps) {
   }, [content]);
 
   useEffect(() => {
-    if (headings.length === 0) {return;}
+    if (headings.length === 0) {
+      return;
+    }
 
-    const headingElements = headings.map(item => 
-      document.getElementById(item.id),
-    ).filter(Boolean) as HTMLElement[];
+    const timeoutId = setTimeout(() => {
+      const headingElements = headings.map(item => 
+        document.getElementById(item.id),
+      ).filter(Boolean) as HTMLElement[];
 
-    if (headingElements.length === 0) {return;}
+      if (headingElements.length === 0) {
+        return;
+      }
 
-    observerRef.current = new IntersectionObserver(
-      (entries) => {
-        const visibleEntries = entries.filter(entry => entry.isIntersecting);
-        
-        if (visibleEntries.length > 0) {
-          const topEntry = visibleEntries.reduce((prev, current) => 
-            prev.boundingClientRect.top < current.boundingClientRect.top ? prev : current,
-          );
-          setActiveId(topEntry.target.id);
-        }
-      },
-      {
-        rootMargin: '-80px 0px -80% 0px',
-        threshold: 0,
-      },
-    );
+      observerRef.current = new IntersectionObserver(
+        (entries) => {
+          const visibleEntries = entries.filter(entry => entry.isIntersecting);
+          
+          if (visibleEntries.length > 0) {
+            const topEntry = visibleEntries.reduce((prev, current) => {
+              const prevTop = prev.boundingClientRect.top;
+              const currentTop = current.boundingClientRect.top;
+              return Math.abs(prevTop) < Math.abs(currentTop) ? prev : current;
+            });
+            setActiveId(topEntry.target.id);
+          }
+        },
+        {
+          rootMargin: '-20% 0px -70% 0px',
+          threshold: [0, 0.25, 0.5, 0.75, 1],
+        },
+      );
 
-    headingElements.forEach(element => {
-      observerRef.current?.observe(element);
-    });
+      headingElements.forEach(element => {
+        observerRef.current?.observe(element);
+      });
+    }, 100);
 
     return () => {
+      clearTimeout(timeoutId);
       observerRef.current?.disconnect();
     };
   }, [headings]);
@@ -81,12 +90,13 @@ export function TableOfContents({ content, className }: TableOfContentsProps) {
   const scrollToHeading = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
-      const offset = 80; 
+      const offset = 100; // 增加偏移量
       const elementPosition = element.offsetTop - offset;
       window.scrollTo({
-        top: elementPosition,
+        top: Math.max(0, elementPosition), // 确保不会滚动到负值
         behavior: 'smooth',
       });
+      setActiveId(id);
     }
   };
 

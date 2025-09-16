@@ -8,9 +8,43 @@ import rehypeStringify from 'rehype-stringify';
 import rehypePrettyCode from 'rehype-pretty-code';
 import { useEffect, useState } from 'react';
 import { useTheme } from 'next-themes';
+import { visit } from 'unist-util-visit';
+import type { Element } from 'hast';
 
 interface MarkdownRenderProps {
   content: string;
+}
+
+function generateHeadingId(text: string): string {
+  return text
+    .toLowerCase()
+    .replace(/[^\w\u4e00-\u9fa5\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-')
+    .trim();
+}
+
+function rehypeHeadingIds() {
+  return (tree: Element) => {
+    visit(tree, 'element', (node: Element) => {
+      if (['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(node.tagName)) {
+        const textContent = getTextContent(node);
+        node.properties = node.properties || {};
+        node.properties.id = generateHeadingId(textContent);
+      }
+    });
+  };
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function getTextContent(node: any): string {
+  if (node.type === 'text') {
+    return node.value;
+  }
+  if (node.children) {
+    return node.children.map(getTextContent).join('');
+  }
+  return '';
 }
 
 export function MarkdownRender({ content }: MarkdownRenderProps) {
@@ -25,6 +59,7 @@ export function MarkdownRender({ content }: MarkdownRenderProps) {
           .use(remarkParse)
           .use(remarkGfm)
           .use(remarkRehype)
+          .use(rehypeHeadingIds)
           .use(rehypePrettyCode, {
             theme: isDark ? 'github-dark-dimmed' : 'github-light',
             keepBackground: true,
