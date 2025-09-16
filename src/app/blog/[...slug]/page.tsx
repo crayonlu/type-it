@@ -52,7 +52,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                 </div>
               </header>
 
-              <div className="mx-auto">
+              <div className="w-full">
                 <MarkdownRender 
                   content={post.content}
                 />
