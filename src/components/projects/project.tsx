@@ -1,11 +1,11 @@
 'use client';
 
 // 项目展示组件
-import type { Project } from '@/types/project';
 import { useTranslations } from 'next-intl';
 import { Glow } from '@codaworks/react-glow';
 import Link from 'next/link';
 import Image from 'next/image';
+import type { Project } from '@/types/project';
 
 export default function Project(props: Project) {
   const t = useTranslations('Project');

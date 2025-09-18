@@ -32,7 +32,6 @@ export function LangToggle() {
       await setUserLocale(newLocale as Locale);
       router.refresh();
     } catch (error) {
-      // eslint-disable-next-line no-console
       console.error(t('FailedToChangeLanguage'), error);
     } finally {
       setIsLoading(false);

@@ -1,6 +1,5 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
 import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
@@ -8,6 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Search, ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useCategorySearch } from '@/hooks/use-category-search';
 
 export interface CategoryItem {
   name: string
@@ -17,7 +17,6 @@ export interface CategoryItem {
 interface CategorySelectorProps {
   categories: CategoryItem[]
   selectedCategories: string[]
-  // eslint-disable-next-line no-unused-vars
   onCategoriesChange: (categories: string[]) => void
 }
 
@@ -25,24 +24,11 @@ interface CategoryNodeProps {
   category: CategoryItem
   level: number
   selectedCategories: string[]
-  // eslint-disable-next-line no-unused-vars
   onToggle: (categoryName: string) => void
   searchTerm: string
   expandedNodes: Set<string>
-  // eslint-disable-next-line no-unused-vars
   onToggleExpand: (categoryName: string) => void
 }
-
-const getAllCategoryNames = (cats: CategoryItem[]): string[] => {
-  let names: string[] = [];
-  cats.forEach(cat => {
-    names.push(cat.name);
-    if (cat.children.length > 0) {
-      names = names.concat(getAllCategoryNames(cat.children));
-    }
-  });
-  return names;
-};
 
 function CategoryNode({ 
   category, 
@@ -149,98 +135,17 @@ export default function CategorySelector({
   onCategoriesChange, 
 }: CategorySelectorProps) {
   const t = useTranslations('Blog.Sidebar');
-  const [searchTerm, setSearchTerm] = useState('');
-  const [expandedNodes, setExpandedNodes] = useState<Set<string>>(new Set());
-  const isInitialized = useRef(false);
-
-  const allCategoryNames = getAllCategoryNames(categories);
-  const areAllSelected = selectedCategories.length > 0 && selectedCategories.length === allCategoryNames.length;
-
-  useEffect(() => {
-    if (!isInitialized.current && categories.length > 0 && selectedCategories.length === 0) {
-      onCategoriesChange(allCategoryNames);
-      isInitialized.current = true;
-    }
-  }, [categories, selectedCategories, onCategoriesChange, allCategoryNames]);
-
-  useEffect(() => {
-    if (searchTerm) {
-      const newExpanded = new Set<string>();
-      
-      const expandMatchingNodes = (cats: CategoryItem[]) => {
-        cats.forEach(cat => {
-          const hasMatchingChild = cat.children.some(child => 
-            child.name.toLowerCase().includes(searchTerm.toLowerCase()),
-          );
-          if (hasMatchingChild) {
-            newExpanded.add(cat.name);
-          }
-          expandMatchingNodes(cat.children);
-        });
-      };
-      
-      expandMatchingNodes(categories);
-      setExpandedNodes(newExpanded);
-    } else {
-      setExpandedNodes(new Set());
-    }
-  }, [searchTerm, categories]);
-
-  const handleToggleCategory = (categoryName: string) => {
-    const findCategory = (cats: CategoryItem[]): CategoryItem | undefined => {
-      for (const cat of cats) {
-        if (cat.name === categoryName) {return cat;}
-        const found = findCategory(cat.children);
-        if (found) {return found;}
-      }
-      return undefined;
-    };
-    const categoryObj = findCategory(categories);
-    if (!categoryObj) {return;}
-
-    const getChildCategoryNames = (cat: CategoryItem): string[] => {
-      let names = [cat.name];
-      if (cat.children.length > 0) {
-        cat.children.forEach(child => {
-          names = names.concat(getChildCategoryNames(child));
-        });
-      }
-      return names;
-    };
-    const allNames = getChildCategoryNames(categoryObj);
-
-    if (selectedCategories.includes(categoryName)) {
-      onCategoriesChange(selectedCategories.filter(name => !allNames.includes(name)));
-    } else {
-      onCategoriesChange(Array.from(new Set([...selectedCategories, ...allNames])));
-    }
-  };
-
-  const handleToggleExpand = (categoryName: string) => {
-    setExpandedNodes(prev => {
-      const newSet = new Set(prev);
-      if (newSet.has(categoryName)) {
-        newSet.delete(categoryName);
-      } else {
-        newSet.add(categoryName);
-      }
-      return newSet;
-    });
-  };
-
-  const handleToggleSelectAll = () => {
-    if (areAllSelected) {
-      onCategoriesChange([]);
-    } else {
-      onCategoriesChange(allCategoryNames);
-    }
-  };
-
-  const handleClear = () => {
-    onCategoriesChange([]);
-    setSearchTerm('');
-    setExpandedNodes(new Set());
-  };
+  
+  const {
+    searchTerm,
+    setSearchTerm,
+    expandedNodes,
+    areAllSelected,
+    handleToggleCategory,
+    handleToggleExpand,
+    handleToggleSelectAll,
+    handleClear,
+  } = useCategorySearch(categories, selectedCategories, onCategoriesChange);
 
   return (
     <>

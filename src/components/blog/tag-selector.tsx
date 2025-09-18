@@ -1,16 +1,15 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
 import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Search } from 'lucide-react';
+import { useTagSearch } from '@/hooks/use-tag-search';
 
 interface TagSelectorProps {
   tags: string[]
   selectedTags: string[]
-  // eslint-disable-next-line no-unused-vars
   onTagsChange: (tags: string[]) => void
 }
 
@@ -20,42 +19,16 @@ export default function TagSelector({
   onTagsChange,
 }: TagSelectorProps) {
   const t = useTranslations('Blog.Sidebar');
-  const [searchTerm, setSearchTerm] = useState('');
-  const isInitialized = useRef(false);
-
-  useEffect(() => {
-    if (!isInitialized.current && tags.length > 0 && selectedTags.length === 0) {
-      onTagsChange(tags);
-      isInitialized.current = true;
-    }
-  }, [tags, selectedTags, onTagsChange]);
-
-  const filteredTags = tags.filter(tag =>
-    tag.toLowerCase().includes(searchTerm.toLowerCase()),
-  ).sort();
-
-  const areAllSelected = selectedTags.length > 0 && selectedTags.length === tags.length;
-
-  const handleToggleTag = (tag: string) => {
-    if (selectedTags.includes(tag)) {
-      onTagsChange(selectedTags.filter(t => t !== tag));
-    } else {
-      onTagsChange([...selectedTags, tag]);
-    }
-  };
-
-  const handleToggleSelectAll = () => {
-    if (areAllSelected) {
-      onTagsChange([]);
-    } else {
-      onTagsChange(tags);
-    }
-  };
   
-  const handleClear = () => {
-    onTagsChange([]);
-    setSearchTerm('');
-  };
+  const {
+    searchTerm,
+    setSearchTerm,
+    filteredTags,
+    areAllSelected,
+    handleToggleTag,
+    handleToggleSelectAll,
+    handleClear,
+  } = useTagSearch(tags, selectedTags, onTagsChange);
 
   return (
     <>

@@ -20,7 +20,12 @@ const eslintConfig = [
     rules: {
       // 基本代码质量规则
       'no-debugger': 'error', // 禁止debugger
-      'no-unused-vars': 'warn', // 警告未使用的变量
+      'no-unused-vars': 'off', // 关闭基础规则，使用TypeScript版本
+      '@typescript-eslint/no-unused-vars': ['warn', { 
+        'argsIgnorePattern': '^_',
+        'varsIgnorePattern': '^_',
+        'ignoreRestSiblings': true,
+      }],
       'prefer-const': 'error', // 优先使用const
       'no-var': 'error', // 禁止使用var
       
@@ -37,7 +42,6 @@ const eslintConfig = [
       'no-implied-eval': 'error', // 禁止隐式eval
       
       // TypeScript相关
-      '@typescript-eslint/no-unused-vars': 'warn',
       '@typescript-eslint/explicit-function-return-type': 'off',
       '@typescript-eslint/no-explicit-any': 'warn', // 警告使用any
     },

@@ -12,11 +12,9 @@ interface CategorySidebarProps {
   className?: string
   categories: CategoryItem[]
   selectedCategories: string[]
-  // eslint-disable-next-line no-unused-vars
   onCategoriesChange: (categories: string[]) => void
   tags: string[]
   selectedTags: string[]
-  // eslint-disable-next-line no-unused-vars
   onTagsChange: (tags: string[]) => void
 }
 

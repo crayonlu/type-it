@@ -28,7 +28,6 @@ async function findProjectMarkdownFiles(): Promise<Map<string, string>> {
       }
     }
   } catch (error) {
-    // eslint-disable-next-line no-console
     console.error('Failed to scan project markdown files:', error);
   }
   
@@ -57,7 +56,6 @@ export async function getProjectBySlug(slug: string): Promise<ProjectWithContent
     try {
       content = await fs.readFile(markdownPath, 'utf8');
     } catch (error) {
-      // eslint-disable-next-line no-console
       console.error('Failed to load project docs:', error);
       content = '';
     }

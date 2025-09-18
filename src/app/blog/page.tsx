@@ -1,68 +1,32 @@
 'use client';
 
 // 所有博客展示页
-import { useState, useEffect } from 'react';
-import blog_configs from '@/config/docs/Blog/config';
-import extractCategories from '@/lib/blog/extract-categories';
-import extractTags from '@/lib/blog/extract-tags';
 import CategorySidebar from '@/components/blog/category-sidebar';
 import CategorySelector from '@/components/blog/category-selector';
 import TagSelector from '@/components/blog/tag-selector';
-import filterBlogs from '@/lib/blog/filter-blogs';
 import Post from '@/components/blog/post';
 import { GlowCapture } from '@codaworks/react-glow';
 import { Filter, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useTranslations } from 'next-intl';
+import { useBlogFilter } from '@/hooks/use-blog-filter';
+import { useMobileSidebar } from '@/hooks/use-mobile-sidebar';
 
 export default function BlogsView(){
-  const categories = extractCategories(blog_configs);
-  const tags = extractTags(blog_configs);
-  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
-  const [selectedTags, setSelectedTags] = useState<string[]>([]);
-  const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
-  const blogPosts = filterBlogs({tags:selectedTags,categories:selectedCategories});
+  const {
+    categories,
+    tags,
+    selectedCategories,
+    setSelectedCategories,
+    selectedTags,
+    setSelectedTags,
+    blogPosts,
+  } = useBlogFilter();
+  
+  const { isMobileSidebarOpen, setIsMobileSidebarOpen } = useMobileSidebar();
+  
   const t = useTranslations('Blog.Page');
   const sidebarT = useTranslations('Blog.Sidebar');
-
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth < 768) { // md breakpoint
-        setIsMobileSidebarOpen(false);
-      }
-    };
-
-    handleResize();
-    
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (window.innerWidth < 768 && isMobileSidebarOpen) {
-        const sidebar = document.getElementById('mobile-sidebar');
-        if (sidebar && !sidebar.contains(event.target as Node)) {
-          setIsMobileSidebarOpen(false);
-        }
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [isMobileSidebarOpen]);
-
-  useEffect(() => {
-    if (isMobileSidebarOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
-  }, [isMobileSidebarOpen]);
   
   return (
     <div className="flex h-screen relative">
@@ -86,7 +50,7 @@ export default function BlogsView(){
           
           <div
             id="mobile-sidebar"
-            className="fixed left-0 top-0 h-full w-80 bg-card border-r border-border shadow-2xl animate-in slide-in-from-left-0 duration-300"
+            className="overflow-y-auto fixed left-0 top-0 h-full w-80 bg-card border-r border-border shadow-2xl animate-in slide-in-from-left-0 duration-300"
           >
             <div className="flex items-center justify-between p-4 border-b border-border">
               <h2 className="text-lg font-semibold">{sidebarT('Filter')}</h2>
