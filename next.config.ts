@@ -30,6 +30,12 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'cdn.crayoncreator.top',
+        port: '',
+        pathname: '/**',
+      },
     ],
   },
   experimental: {

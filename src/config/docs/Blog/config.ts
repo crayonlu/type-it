@@ -1,6 +1,6 @@
 // 博客页配置文件
 import { BlogCategory } from '@/types/blog';
-import { BLOG_DOCS_BASE, BLOG_IMG_BASE} from '@/types/blog';
+import { BLOG_DOCS_BASE } from '@/types/blog';
 
 const blog_configs: BlogCategory[] = [
   {
@@ -53,7 +53,7 @@ const blog_configs: BlogCategory[] = [
             time: '2025-3-30',
             docs: `${BLOG_DOCS_BASE}/前端/JS/JS3.md`,
             tags: ['JS','闭包'],
-            cover: `${BLOG_IMG_BASE}/前端/JS/JS3/close1.png`,
+            cover: 'https://cdn.crayoncreator.top/Blog/前端/JS/JS3/close1.png',
           },
           {
             type: 'post',
@@ -70,7 +70,7 @@ const blog_configs: BlogCategory[] = [
             time: '2025-8-13',
             docs: `${BLOG_DOCS_BASE}/前端/JS/elysia.md`,
             tags: ['Elysia','JS','Web框架'],
-            cover: `${BLOG_IMG_BASE}/前端/JS/elysia/1.png`,
+            cover: 'https://cdn.crayoncreator.top/Blog/前端/JS/elysia/1.png',
           },
         ],
       },
@@ -122,7 +122,7 @@ const blog_configs: BlogCategory[] = [
               '哥们',
               '唐',
             ],
-            cover: `${BLOG_IMG_BASE}/生活/趣事/2025.4.5/长江3.jpg`,
+            cover: 'https://cdn.crayoncreator.top/Blog/生活/趣事/2025.4.5/长江3.jpg',
           },
         ],
       },
@@ -171,7 +171,7 @@ const blog_configs: BlogCategory[] = [
         time: '2025-5-29',
         docs: `${BLOG_DOCS_BASE}/我爱看电影/长安三万里.md`,
         tags: ['动画', '历史', '诗歌'],
-        cover: `${BLOG_IMG_BASE}/我爱看电影/长安三万里.png`,
+        cover: 'https://cdn.crayoncreator.top/Blog/我爱看电影/长安三万里.png',
       },
       {
         type: 'post',

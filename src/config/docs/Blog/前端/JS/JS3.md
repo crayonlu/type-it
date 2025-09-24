@@ -76,8 +76,8 @@
 </script>
 ```
 
-![闭包执行过程示意图1](/images/Blog/前端/JS/JS3/close1.png)
-![闭包执行过程示意图2](/images/Blog/前端/JS/JS3/close2.png)
+![闭包执行过程示意图1](https://cdn.crayoncreator.top/Blog/前端/JS/JS3/close1.png)
+![闭包执行过程示意图2](https://cdn.crayoncreator.top/Blog/前端/JS/JS3/close2.png)
 
 ### 闭包的优势
 

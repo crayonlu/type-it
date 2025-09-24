@@ -80,7 +80,7 @@ new Elysia()
     .get('/id/*', 'wildcard path')
     .listen(3000)
 ```
-![路由](/images/Blog/前端/JS/elysia/1.png)
+![路由](https://cdn.crayoncreator.top/Blog/前端/JS/elysia/1.png)
 #### 静态路由
 顾名思义 就是路径是固定的
 ```typescriptypescript
@@ -227,11 +227,11 @@ new Elysia()
     .listen(3000)
 ```
 ### 生命周期
-![生命周期](/images/Blog/前端/JS/elysia/2.png)
+![生命周期](https://cdn.crayoncreator.top/Blog/前端/JS/elysia/2.png)
 学过Vue的应该比较了解生命周期这一块 什么组件销毁的时候清除之类的 什么onMounted之类的 
 
 ### 处理Schema
-![Schema类型](/images/Blog/前端/JS/elysia/3.png)
+![Schema类型](https://cdn.crayoncreator.top/Blog/前端/JS/elysia/3.png)
 挺常用的 可以用来处理请求体 响应体 路由参数 查询参数 等
 
 ### 支持插件系统
