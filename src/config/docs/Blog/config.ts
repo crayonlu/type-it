@@ -114,6 +114,19 @@ const blog_configs: BlogCategory[] = [
         children: [
           {
             type: 'post',
+            title: '闲来无事 我写写写',
+            desc: '写Golang、Bot框架重构、厦门之旅和生活感悟',
+            time: '2024-10-17',
+            docs: `${BLOG_DOCS_BASE}/生活/趣事/2024.10.17.md`,
+            tags: [
+              'Golang',
+              '生活',
+              '旅行',
+              '编程',
+            ],
+          },
+          {
+            type: 'post',
             title: '2025.4.5',
             desc: '张进步来了?逆天',
             time: '2025-4-5',
