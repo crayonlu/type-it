@@ -32,14 +32,14 @@ export default function CategorySidebar({
 
   return (
     <div className={cn(
-      'bg-card border-r border-border h-full flex flex-col transition-all duration-300 relative',
+      'bg-card border-r border-border h-full overflow-auto flex flex-col transition-all duration-300 relative',
       collapsed ? 'w-12' : 'w-80',
       className,
     )}>
       <Button
         variant="ghost"
         size="icon"
-        className="absolute -right-3 top-4 h-6 w-6 rounded-full border bg-background shadow-sm z-10"
+        className="absolute right-0 top-1/2 transform -translate-y-1/2 h-6 w-6 rounded-full border bg-background shadow-sm z-10"
         onClick={() => setCollapsed(!collapsed)}
       >
         {collapsed ? (

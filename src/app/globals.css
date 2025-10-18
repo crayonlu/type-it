@@ -1,3 +1,4 @@
+@import "./normalize.css";
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 @plugin "@codaworks/react-glow/tailwind";
@@ -60,44 +61,4 @@
   --color-input: hsl(217.2 32.6% 17.5%);
   --color-ring: hsl(224.3 76.3% 94.1%);
   --color-text: hsl(217.2 91.2% 59.8%);
-}
-
-/* 针对 Webkit 浏览器 (Chrome, Safari) */
-::-webkit-scrollbar {
-    display: none; /* 隐藏滚动条 */
-    width: 0;      /* 确保宽度为0 */
-    height: 0;     /* 确保高度为0 */
-}
-
-/* 针对 Firefox 浏览器 */
-/* 注意：Firefox 不支持 ::-webkit-scrollbar，需要使用 scrollbar-width */
-html {
-    scrollbar-width: none; /* 隐藏滚动条 */
-}
-
-/* 针对 Internet Explorer 和 Edge 浏览器 */
-/* 注意：IE/Edge 不支持 ::-webkit-scrollbar 或 scrollbar-width，需要使用 -ms-overflow-style */
-html {
-    -ms-overflow-style: none; /* 隐藏滚动条 */
-}
-
-/* 滚动条样式 */
-::-webkit-scrollbar {
-  @apply w-2 h-2;
-}
-
-::-webkit-scrollbar-track {
-  @apply bg-muted rounded;
-}
-
-::-webkit-scrollbar-thumb {
-  @apply bg-border rounded hover:bg-border/80;
-}
-
-.dark ::-webkit-scrollbar-track {
-  @apply bg-muted;
-}
-
-.dark ::-webkit-scrollbar-thumb {
-  @apply bg-border hover:bg-border/80;
 }

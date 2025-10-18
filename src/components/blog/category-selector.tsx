@@ -61,7 +61,7 @@ function CategoryNode({
     <div className="space-y-1">
       <div 
         className={cn(
-          'flex items-center space-x-2 py-2 px-2 rounded-md hover:bg-muted/50 transition-colors group',
+          'flex items-center gap-2 space-x-2 py-2 px-2 rounded-md hover:bg-muted/50 transition-colors group',
           level > 0 && 'ml-4',
         )}
       >

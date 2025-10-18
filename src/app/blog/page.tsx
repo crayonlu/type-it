@@ -29,7 +29,7 @@ export default function BlogsView(){
   const sidebarT = useTranslations('Blog.Sidebar');
   
   return (
-    <div className="flex h-screen relative">
+    <div className="flex h-[100dvh-4rem] relative">
       <div className="hidden md:block">
         <CategorySidebar
           categories={categories}
@@ -80,7 +80,7 @@ export default function BlogsView(){
         </div>
       )}
       
-      <div className="flex-1 flex flex-col">
+      <div className="h-full flex flex-col">
         <div className="md:hidden flex items-center justify-between p-4 px-8 border-b border-border bg-background/95 backdrop-blur">
           <h1 className="text-xl font-semibold">{t('Title')}</h1>
           <Button
@@ -94,7 +94,7 @@ export default function BlogsView(){
           </Button>
         </div>
         
-        <div className="flex-1 overflow-y-auto p-4 sm:p-6 pb-24">
+        <div className="overflow-y-auto p-4 sm:p-6 pb-24">
           <GlowCapture>
             {blogPosts.length > 0 ? (
               <div className="columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-4 sm:gap-6">
