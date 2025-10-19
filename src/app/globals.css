@@ -37,6 +37,18 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  .prose :where(code):not(:where([class~="not-prose"], [class~="not-prose"] *)):not(pre code) {
+    background-color: hsl(210 40% 96%);
+    padding: 0.2em 0.4em;
+    border-radius: 0.25rem;
+    font-weight: 600;
+    font-size: 0.875em;
+  }
+  
+  .dark .prose :where(code):not(:where([class~="not-prose"], [class~="not-prose"] *)):not(pre code) {
+    background-color: hsl(217.2 32.6% 17.5%);
+  }
 }
 
 /* 深色主题 */
