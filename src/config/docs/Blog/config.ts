@@ -82,7 +82,16 @@ const blog_configs: BlogCategory[] = [
       {
         type: 'category',
         name: 'React',
-        children: [],
+        children: [
+          {
+            type: 'post',
+            title: '筛选框的组件封装架构设计',
+            desc: '分享一个小设计思路',
+            time: '2025-10-25',
+            docs: `${BLOG_DOCS_BASE}/前端/React/1.md`,
+            tags: ['React','筛选框','组件封装'],
+          },
+        ],
       },
     ],
   },
@@ -116,8 +125,8 @@ const blog_configs: BlogCategory[] = [
             type: 'post',
             title: '闲来无事 我写写写',
             desc: '写Golang、Bot框架重构、厦门之旅和生活感悟',
-            time: '2024-10-17',
-            docs: `${BLOG_DOCS_BASE}/生活/趣事/2024.10.17.md`,
+            time: '2025-10-17',
+            docs: `${BLOG_DOCS_BASE}/生活/趣事/2025.10.17.md`,
             tags: [
               'Golang',
               '生活',
