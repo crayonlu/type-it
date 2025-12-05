@@ -1,8 +1,8 @@
 import { notFound } from 'next/navigation';
-import { ReadingProgress } from '@/components/blog/reading-progress';
-import { TableOfContents } from '@/components/blog/table-of-contents';
-import { MarkdownRender } from '@/components/blog/markdown-render';
-import { BlogNavigation } from '@/components/blog/blog-navigation';
+import { ReadingProgress } from '@/components/blog/ReadingProgress';
+import { TableOfContents } from '@/components/blog/TableOfContents';
+import { MarkdownRender } from '@/components/blog/MarkdownRender';
+import { BlogNavigation } from '@/components/blog/BlogNavigation';
 import { getBlogPostBySlug, getAdjacentPosts, getAllBlogSlugs } from '@/lib/blog/blog-service';
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string[] }> }) {

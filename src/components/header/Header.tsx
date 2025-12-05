@@ -4,9 +4,9 @@ import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { actionsConfig, navConfig } from '@/config/header';
 import { animations, timelines } from '@config/gsap';
-import HeaderItem from './components/header-item';
-import { ThemeToggle } from '@/components/theme/theme-toggle';
-import { LangToggle } from '@/components/lang/lang-toggle';
+import HeaderItem from './components/HeaderItem';
+import { ThemeToggle } from '@/components/theme/ThemeToggle';
+import { LangToggle } from '@/components/lang/LangToggle';
 import { useTranslations } from 'next-intl';
 import { Menu, X } from 'lucide-react';
 

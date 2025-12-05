@@ -42,7 +42,7 @@ export function BlogNavigation({
                 href={`/blog/${prevPost.slug}`}
                 className="group flex items-center gap-3 p-4 rounded-lg border border-border bg-card hover:bg-accent transition-all duration-200 hover:shadow-md h-full"
               >
-                <div className="flex-shrink-0">
+                <div className="shrink-0">
                   <ArrowLeft className="w-5 h-5 text-muted-foreground group-hover:text-foreground transition-colors" />
                 </div>
                 <div className="flex-1 min-w-0">

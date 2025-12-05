@@ -1,6 +1,6 @@
 // 项目详情页
 import { notFound } from 'next/navigation';
-import { MarkdownRender } from '@/components/blog/markdown-render';
+import { MarkdownRender } from '@/components/blog/MarkdownRender';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { ExternalLink } from 'lucide-react';

@@ -5,8 +5,8 @@ import { useTranslations } from 'next-intl';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-import CategorySelector, { CategoryItem } from './category-selector';
-import TagSelector from './tag-selector';
+import CategorySelector, { CategoryItem } from './CategorySelector';
+import TagSelector from './TagSelector';
 
 interface CategorySidebarProps {
   className?: string

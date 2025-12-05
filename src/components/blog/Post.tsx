@@ -1,7 +1,7 @@
 // post
 import type { BlogPost } from '@/types/blog';
 import { useTranslations } from 'next-intl';
-import Tag from './components/tag';
+import Tag from './components/Tag';
 import { Glow } from '@codaworks/react-glow';
 import Link from 'next/link';
 import Image from 'next/image';

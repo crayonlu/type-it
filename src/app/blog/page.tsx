@@ -1,10 +1,10 @@
 'use client';
 
 // 所有博客展示页
-import CategorySidebar from '@/components/blog/category-sidebar';
-import CategorySelector from '@/components/blog/category-selector';
-import TagSelector from '@/components/blog/tag-selector';
-import Post from '@/components/blog/post';
+import CategorySidebar from '@/components/blog/CategorySidebar';
+import CategorySelector from '@/components/blog/CategorySelector';
+import TagSelector from '@/components/blog/TagSelector';
+import Post from '@/components/blog/Post';
 import { GlowCapture } from '@codaworks/react-glow';
 import { Filter, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';

@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { CategoryItem } from '@/components/blog/category-selector';
+import { CategoryItem } from '@/components/blog/CategorySelector';
 
 /**
  * 分类搜索逻辑Hook

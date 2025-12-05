@@ -1,6 +1,6 @@
 'use client';
 
-import Project from '@/components/projects/project';
+import Project from '@/components/projects/Project';
 import project_config from '@/config/docs/Project/config';
 import { useTranslations } from 'next-intl';
 import { GlowCapture } from '@codaworks/react-glow';

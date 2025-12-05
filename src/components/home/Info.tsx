@@ -6,7 +6,7 @@ import { useEffect, useRef } from 'react';
 import { animations } from '@/config/gsap';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
-import { MarkdownRender } from '@/components/blog/markdown-render';
+import { MarkdownRender } from '@/components/blog/MarkdownRender';
 
 
 interface InfoProps {

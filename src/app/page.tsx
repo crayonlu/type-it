@@ -1,4 +1,4 @@
-import Info from '@/components/home/info';
+import Info from '@/components/home/Info';
 import { getIntroduction } from '@/lib/home/get-introduction';
 import { getLocale } from 'next-intl/server';
 
